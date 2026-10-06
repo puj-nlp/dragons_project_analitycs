@@ -1,0 +1,72 @@
+etl_parquet_dir: C:\project\javeriana\repos\dragons_project_etl\data\parquet\analytics
+analytics_parquet: C:\project\javeriana\repos\dragons_project_etl\data\parquet\analytics\analytics_text_documents.parquet
+nlp_repo: C:\project\javeriana\repos\dragons_project_nlp
+
+run:
+  limit_per_source: 100
+  sources:
+    - media_cloud
+    - gdelt
+    - bluesky
+  min_text_chars: 40
+  max_text_chars_for_llm: 4500
+  llm_enabled: true
+  llm_provider_order:
+    - deepseek
+    - openai
+  llm_temperature: 0.0
+  llm_timeout_seconds: 90
+  llm_max_retries: 2
+
+hf_models:
+  enabled: true
+  gliner:
+    enabled: true
+    library: gliner2
+    model: fastino/gliner2.5-multi-v1
+    fallback_model: urchade/gliner_multi-v2.1
+    threshold: 0.35
+    max_text_chars: 3500
+    chunk_overlap_chars: 300
+    max_chunks: 8
+    labels:
+      - person
+      - organization
+      - government institution
+      - media outlet
+      - civil society organization
+      - indigenous or local community
+      - scientific institution
+      - company
+      - location
+      - country
+      - biodiversity concept
+      - species
+      - ecosystem
+      - protected area
+      - policy or law
+      - event
+      - date
+      - funding or money
+      - risk or threat
+      - proposed action
+
+outputs:
+  parquet_dir: data/processed/pilot_variables
+  log_dir: logs/variable_processing
+  mongo_database: dragons
+  mongo_results_collection: analytics_variable_results_pilot
+  mongo_runs_collection: analytics_variable_runs
+  postgres_schema: public
+  postgres_results_table: analytics_variable_results_pilot
+  postgres_runs_table: analytics_variable_runs
+
+models:
+  deepseek:
+    endpoint: https://api.deepseek.com/chat/completions
+    model: deepseek-chat
+    token_env: DEEPSEEK_TOKEN
+  openai:
+    endpoint: https://api.openai.com/v1/chat/completions
+    model: gpt-4o-mini
+    token_env: OPENAI_API_KEY

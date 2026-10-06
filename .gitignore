@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+temp
+
+# DRAGONS analytics generated artifacts
+logs/
+output/
+data/processed/
+data/parquet/
+.vendor/
+vendor_python/
+
+# Local IDE settings
+.idea/

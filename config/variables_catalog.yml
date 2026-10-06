@@ -1,0 +1,288 @@
+version: 0.1
+status: draft
+source_repositories:
+  analytics_repo: C:\project\javeriana\repos\dragons_project_analitycs
+  etl_repo: C:\project\javeriana\repos\dragons_project_etl
+
+levels:
+  level_1: "Compromiso base, viabilidad alta"
+  level_2: "Cobertura selectiva, requiere validacion y datos suficientes"
+  level_3: "No comprometer en cronograma actual"
+  level_4: "Fuera de alcance, documentar limitacion"
+
+variables:
+  - name: corpus_coverage
+    level: level_1
+    unit: corpus
+    method_type: deterministic
+    tools: [pandas]
+    inputs: [source, country_key, language, created_at, collection_name]
+    output_type: table
+    validation: schema_and_count_checks
+
+  - name: text_metrics
+    level: level_1
+    unit: document
+    method_type: deterministic_existing_etl
+    tools: [etl.src.text_metrics]
+    inputs: [text, language]
+    outputs:
+      - word_count
+      - sentence_count
+      - paragraph_count
+      - lexical_density_proxy
+      - type_token_ratio
+      - top_terms
+    validation: spot_check_against_etl
+
+  - name: relevance_biodiversity
+    level: level_1
+    unit: document
+    method_type: llm_prompt
+    tools: [openai_or_gemini_json_prompt]
+    inputs: [title, text, keyword_family, source, language]
+    outputs: [is_relevant, relevance_score, rationale_short]
+    validation: human_gold_sample
+
+  - name: sentiment
+    level: level_1
+    unit: document
+    method_type: llm_or_hf
+    tools: [json_prompt, multilingual_sentiment_model]
+    allowed_values: [positive, neutral, negative, mixed, unclear]
+    validation: stratified_human_review_by_language
+
+  - name: emotion_signals
+    level: level_2
+    unit: document
+    method_type: llm_prompt
+    tools: [json_prompt]
+    allowed_values: [concern, fear, anger, sadness, hope, trust, pride, none, unclear]
+    notes: "Taxonomia corta; no convertir en psicometria."
+    validation: human_review
+
+  - name: narrative_label
+    level: level_1
+    unit: document
+    method_type: hybrid_clustering_llm
+    tools: [sentence_transformers, sklearn, json_prompt]
+    outputs: [narrative_label, narrative_summary, evidence_span]
+    validation: cluster_review_and_human_sample
+
+  - name: dominant_frame
+    level: level_1
+    unit: document
+    method_type: llm_prompt
+    tools: [json_prompt]
+    outputs: [frame_label, problem_definition, cause, consequence, solution, evidence_span]
+    validation: human_coding_sample
+
+  - name: marginalised_frame_candidate
+    level: level_2
+    unit: document_or_cluster
+    method_type: llm_prompt_plus_distributional_analysis
+    tools: [json_prompt, pandas]
+    outputs: [is_candidate, frame_label, underrepresentation_reason]
+    validation: domain_partner_review
+
+  - name: actor_roles
+    level: level_1
+    unit: document
+    method_type: hf_plus_llm
+    tools: [gliner_ner_hf, json_prompt]
+    outputs: [actor_mentions, responsibility_actor, agency_actor, blame_actor, proposed_action]
+    prompt: "Identifique actores mencionados y clasifique su rol discursivo solo cuando haya evidencia textual: responsabilidad, agencia, culpa, afectado, experto u otro."
+    validation: human_review
+
+  - name: gliner_named_entities
+    level: level_1
+    unit: document
+    method_type: hf_gliner
+    tools: [gliner, huggingface]
+    model_candidates:
+      primary: fastino/gliner2.5-multi-v1
+      fast_smoke_test: fastino/gliner2.5-small-v1
+      fallback_legacy: urchade/gliner_multi-v2.1
+    inputs: [title, text, language]
+    outputs:
+      - entities
+      - entity_counts_by_label
+      - top_entity_labels
+    prompt: "Extraiga entidades nombradas y conceptos de biodiversidad usando etiquetas abiertas: personas, organizaciones, instituciones publicas, medios, comunidades, lugares, especies, ecosistemas, areas protegidas, politicas, eventos, fechas, dinero, riesgos y acciones propuestas."
+    notes: "Modelo primario GLiNER2.5 multilingue via gliner2 AutoExtractor; legacy v2.1 queda como fallback operativo."
+    validation: entity_span_spot_check
+
+  - name: stakeholder_presence
+    level: level_1
+    unit: document
+    method_type: llm_prompt_plus_gliner
+    tools: [gliner_ner_hf, json_prompt]
+    outputs: [government_present, community_present, ngo_present, private_sector_present, science_present, media_present]
+    prompt: "A partir de entidades y texto, indique si aparecen gobierno, comunidades locales o indigenas, ONG/sociedad civil, sector privado, ciencia/academia y medios. Devuelva booleanos y evidencia corta."
+    validation: human_review
+
+  - name: biodiversity_object
+    level: level_1
+    unit: document
+    method_type: gliner_plus_llm_prompt
+    tools: [gliner_ner_hf, json_prompt]
+    outputs: [species_mentions, ecosystem_mentions, protected_area_mentions, biodiversity_concepts]
+    prompt: "Extraiga el objeto biodiverso central: especies, ecosistemas, areas protegidas o conceptos de biodiversidad mencionados. Si no hay evidencia, devuelva listas vacias."
+    validation: domain_spot_check
+
+  - name: governance_policy_mentions
+    level: level_2
+    unit: document
+    method_type: gliner_plus_llm_prompt
+    tools: [gliner_ner_hf, json_prompt]
+    outputs: [policy_mentions, institution_mentions, regulation_or_commitment, implementation_gap]
+    prompt: "Identifique politicas, leyes, instituciones o compromisos publicos mencionados y si el texto senala brechas de implementacion."
+    validation: human_review
+
+  - name: evidence_type
+    level: level_2
+    unit: document_or_claim
+    method_type: llm_prompt
+    tools: [json_prompt]
+    allowed_values: [data_or_statistics, expert_source, official_document, eyewitness_or_testimony, anecdotal, no_evidence, unclear]
+    prompt: "Clasifique el tipo de evidencia usada para sostener la afirmacion principal. No juzgue si la afirmacion es verdadera o falsa."
+    validation: human_claim_sample
+
+  - name: solution_orientation
+    level: level_2
+    unit: document
+    method_type: llm_prompt
+    tools: [json_prompt]
+    allowed_values: [problem_only, proposes_solution, evaluates_solution, calls_for_action, unclear]
+    prompt: "Determine si el texto solo describe un problema, propone una solucion, evalua una solucion o hace un llamado a la accion."
+    validation: human_review
+
+  - name: justice_equity_signal
+    level: level_2
+    unit: document
+    method_type: llm_prompt
+    tools: [json_prompt]
+    outputs: [is_present, affected_group, equity_dimension, evidence_span]
+    prompt: "Detecte menciones explicitas a justicia, equidad, derechos, participacion, comunidades afectadas o distribucion desigual de costos/beneficios."
+    validation: domain_partner_review
+
+  - name: uncertainty_signal
+    level: level_2
+    unit: document
+    method_type: llm_prompt
+    tools: [json_prompt]
+    allowed_values: [high_uncertainty, moderate_uncertainty, low_uncertainty, no_uncertainty_signal, unclear]
+    prompt: "Clasifique si el texto expresa incertidumbre, falta de evidencia, controversia tecnica o necesidad de mas datos."
+    validation: human_review
+
+  - name: conflict_polarization_signal
+    level: level_2
+    unit: document
+    method_type: llm_prompt
+    tools: [json_prompt]
+    outputs: [is_conflict_present, conflict_axis, actors_in_conflict, evidence_span]
+    prompt: "Identifique si el texto presenta conflicto entre actores, valores o intereses, por ejemplo conservacion vs economia, comunidad vs gobierno, bienestar animal vs ecosistema."
+    validation: human_review
+
+  - name: claim_typology
+    level: level_2
+    unit: claim
+    method_type: llm_prompt
+    tools: [json_prompt]
+    allowed_values:
+      claim_type: [factual_claim, opinion, interpretation, value_judgment, prediction, testimony, mixed_claim]
+      verifiability: [directly_verifiable, verifiable_with_external_evidence, difficult_to_verify, not_factually_verifiable, insufficient_context]
+      evidence_presence: [explicit_evidence, source_mentioned, testimony_only, no_evidence_presented, not_applicable]
+    notes: "No clasifica verdad/falsedad ni desinformacion."
+    validation: human_claim_sample
+
+  - name: temporal_patterns
+    level: level_2
+    unit: time_window
+    method_type: deterministic_statistics
+    tools: [pandas, statsmodels]
+    inputs: [created_at, event_id, source, country_key, narrative_label, dominant_frame]
+    outputs: [volume, relative_frequency, event_window_delta]
+    validation: coverage_homologation_check
+
+  - name: bluesky_author_network
+    level: level_2
+    unit: graph
+    method_type: sna_networkx
+    tools: [networkx]
+    inputs: [author_did, uri, raw_record_reply_parent_uri, raw_record_reply_root_uri, engagement_like_count, engagement_repost_count, engagement_quote_count]
+    outputs: [degree, in_degree, out_degree, betweenness, pagerank, connected_components]
+    notes: "Interpretar como red observable, no como algoritmo de recomendacion."
+    validation: graph_integrity_checks
+
+  - name: engagement_proxy
+    level: level_3
+    unit: document
+    method_type: deterministic
+    tools: [pandas]
+    inputs: [engagement_like_count, engagement_reply_count, engagement_repost_count, engagement_quote_count, created_at]
+    outputs: [engagement_total, engagement_rate_if_denominator_exists]
+    notes: "Proxy de visibilidad/interaccion, no amplificacion algoritmica causal."
+    validation: platform_specific_missingness_check
+
+  - name: disinformation_validated
+    level: level_3
+    unit: claim
+    method_type: out_of_scope
+    reason: "Requiere fact-checking externo, evidencia y protocolo propio."
+
+  - name: algorithmic_amplification_causal
+    level: level_4
+    unit: platform
+    method_type: out_of_scope
+    reason: "No inferible con metricas publicas acumuladas."
+
+final_composite_profiles:
+  - name: corpus_profile
+    components: [corpus_coverage, text_metrics]
+    purpose: "Perfil de cobertura, calidad y comparabilidad del corpus."
+  - name: biodiversity_relevance_profile
+    components: [relevance_biodiversity, gliner_named_entities, text_metrics]
+    purpose: "Determinar relevancia real a biodiversidad combinando keywords, entidades y juicio semantico."
+  - name: biodiversity_object_profile
+    components: [gliner_named_entities, biodiversity_object]
+    purpose: "Identificar especies, ecosistemas, areas protegidas y conceptos centrales."
+  - name: actor_stakeholder_profile
+    components: [gliner_named_entities, stakeholder_presence, actor_roles]
+    purpose: "Caracterizar actores, stakeholders y roles discursivos."
+  - name: governance_policy_profile
+    components: [gliner_named_entities, governance_policy_mentions]
+    purpose: "Medir presencia de instituciones, politicas, leyes, compromisos y brechas."
+  - name: narrative_frame_profile
+    components: [narrative_label, dominant_frame, marginalised_frame_candidate]
+    purpose: "Caracterizar narrativas, frames dominantes y frames marginalizados candidatos."
+  - name: emotion_sentiment_profile
+    components: [sentiment, emotion_signals]
+    purpose: "Caracterizar tono, emociones e intensidad discursiva."
+  - name: claim_evidence_profile
+    components: [claim_typology, evidence_type]
+    purpose: "Clasificar afirmaciones y evidencia textual sin hacer fact-checking."
+  - name: solution_action_profile
+    components: [actor_roles, solution_orientation, gliner_named_entities]
+    purpose: "Detectar propuestas, llamados a la accion y actores con agencia."
+  - name: justice_equity_profile
+    components: [justice_equity_signal, stakeholder_presence, gliner_named_entities]
+    purpose: "Detectar justicia, equidad, participacion y grupos afectados."
+  - name: uncertainty_risk_profile
+    components: [uncertainty_signal, gliner_named_entities]
+    purpose: "Detectar amenazas, riesgos, incertidumbre y necesidad de evidencia adicional."
+  - name: conflict_profile
+    components: [conflict_polarization_signal, actor_roles, emotion_signals]
+    purpose: "Identificar conflicto entre actores, valores o intereses."
+  - name: engagement_visibility_profile
+    components: [engagement_proxy, dominant_frame, emotion_signals, gliner_named_entities]
+    purpose: "Relacionar visibilidad observable con frames, emociones y entidades."
+  - name: network_position_profile
+    components: [bluesky_author_network, gliner_named_entities, actor_roles]
+    purpose: "Medir posicion de actores/documentos en redes observables."
+  - name: comparative_country_source_profile
+    components: [corpus_coverage, relevance_biodiversity, dominant_frame, gliner_named_entities, sentiment]
+    purpose: "Comparar paises, fuentes e idiomas solo donde la cobertura sea defendible."
+  - name: temporal_event_profile
+    components: [temporal_patterns, narrative_label, dominant_frame, gliner_named_entities]
+    purpose: "Analizar cambios temporales y alrededor de eventos."
