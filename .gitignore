@@ -229,3 +229,6 @@ vendor_python/
 
 # Local IDE settings
 .idea/
+.env/
+scripts/__pycache__/
+
