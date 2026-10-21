@@ -1,0 +1,1068 @@
+{
+  "started_at_utc": "2026-10-18T03:25:07.212062+00:00",
+  "finished_at_utc": "2026-10-18T03:25:41.365995+00:00",
+  "historical_cutoff_utc": "2026-10-15T05:26:54.989671+00:00",
+  "active": {},
+  "raw": {
+    "llm": 169248,
+    "hf": 251072
+  },
+  "invalid": {
+    "hf": 1
+  },
+  "partial_tail_excluded": {},
+  "current": {
+    "hf": {
+      "unique": 169248,
+      "status": {
+        "success": 169243,
+        "failed": 5
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64670
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 103375,
+          "failed": 5
+        }
+      },
+      "providers": {
+        "huggingface": 169243
+      }
+    },
+    "llm": {
+      "unique": 169248,
+      "status": {
+        "success": 169247,
+        "failed": 1
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64669,
+          "failed": 1
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 103380
+        }
+      },
+      "providers": {
+        "deepseek": 169139,
+        "openai": 108
+      }
+    }
+  },
+  "historical_recalculated": {
+    "hf": {
+      "unique": 169248,
+      "status": {
+        "success": 153808,
+        "failed": 15440
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64670
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 87940,
+          "failed": 15440
+        }
+      },
+      "providers": {
+        "huggingface": 153808
+      }
+    },
+    "llm": {
+      "unique": 108872,
+      "status": {
+        "success": 108871,
+        "failed": 1
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64669,
+          "failed": 1
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 43004
+        }
+      },
+      "providers": {
+        "deepseek": 108788,
+        "openai": 83
+      }
+    }
+  },
+  "runs": [
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s0of5",
+      "pid": null,
+      "processed_unique": 10993,
+      "target": 10993,
+      "finished_at": "2026-10-13T18:33:39.110888+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s0of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s0of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s0of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s0of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 10993
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 10993
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_bluesky_s0of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s0of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s0of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 10981,
+        "failed": 12
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 10993
+      },
+      "status": "completed",
+      "updated_at": "2026-10-13T18:33:51.369547+00:00",
+      "last_computed_at": "2026-10-13T18:33:39.006675+00:00",
+      "metadata_status": {
+        "success": 10993
+      },
+      "errors": 93,
+      "variables": 673673,
+      "snapshot_bytes": 89444626
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s1of5",
+      "pid": null,
+      "processed_unique": 10918,
+      "target": 10918,
+      "finished_at": "2026-10-13T18:08:54.420774+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s1of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s1of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s1of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s1of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 10918
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 10918
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_bluesky_s1of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s1of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s1of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 10907,
+        "failed": 11
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 10918
+      },
+      "status": "completed",
+      "updated_at": "2026-10-13T18:09:08.130533+00:00",
+      "last_computed_at": "2026-10-13T18:08:54.065707+00:00",
+      "metadata_status": {
+        "success": 10918
+      },
+      "errors": 82,
+      "variables": 669154,
+      "snapshot_bytes": 89012682
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s2of5",
+      "pid": null,
+      "processed_unique": 10831,
+      "target": 10831,
+      "finished_at": "2026-10-13T17:15:47.839185+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s2of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s2of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s2of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s2of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 10831
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 10831
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_bluesky_s2of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s2of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s2of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 10820,
+        "failed": 11
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 10831
+      },
+      "status": "completed",
+      "updated_at": "2026-10-13T17:16:03.626266+00:00",
+      "last_computed_at": "2026-10-13T17:15:47.586035+00:00",
+      "metadata_status": {
+        "success": 10831
+      },
+      "errors": 68,
+      "variables": 663713,
+      "snapshot_bytes": 88083719
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s3of5",
+      "pid": null,
+      "processed_unique": 10950,
+      "target": 10950,
+      "finished_at": "2026-10-13T18:30:13.767721+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s3of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s3of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s3of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s3of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 10950
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 10950
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_bluesky_s3of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s3of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s3of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 10939,
+        "failed": 11
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 10950
+      },
+      "status": "completed",
+      "updated_at": "2026-10-13T18:30:28.428237+00:00",
+      "last_computed_at": "2026-10-13T18:30:13.640351+00:00",
+      "metadata_status": {
+        "success": 10950
+      },
+      "errors": 90,
+      "variables": 671146,
+      "snapshot_bytes": 89312004
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s4of5",
+      "pid": null,
+      "processed_unique": 10841,
+      "target": 10841,
+      "finished_at": "2026-10-13T17:37:58.807943+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s4of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s4of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s4of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s4of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 10841
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 10841
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_bluesky_s4of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s4of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_bluesky_s4of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 10829,
+        "failed": 12
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 10841
+      },
+      "status": "completed",
+      "updated_at": "2026-10-13T17:38:14.570887+00:00",
+      "last_computed_at": "2026-10-13T17:37:58.670760+00:00",
+      "metadata_status": {
+        "success": 10841
+      },
+      "errors": 85,
+      "variables": 664434,
+      "snapshot_bytes": 88381166
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5",
+      "pid": null,
+      "processed_unique": 19829,
+      "target": 19829,
+      "finished_at": "2026-10-17T23:40:38.882521+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 19829
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 19829
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 19821,
+        "failed": 8
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 19829
+      },
+      "status": "completed",
+      "updated_at": "2026-10-17T23:41:09.245142+00:00",
+      "last_computed_at": "2026-10-17T23:40:38.773105+00:00",
+      "metadata_status": {
+        "success": 19829
+      },
+      "errors": 111,
+      "variables": 1207029,
+      "snapshot_bytes": 325584988
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5",
+      "pid": null,
+      "processed_unique": 19620,
+      "target": 19620,
+      "finished_at": "2026-10-17T22:34:01.307209+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 19620
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 19620
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 19613,
+        "failed": 7
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 19620
+      },
+      "status": "completed",
+      "updated_at": "2026-10-17T22:34:37.238714+00:00",
+      "last_computed_at": "2026-10-17T22:34:01.193339+00:00",
+      "metadata_status": {
+        "success": 19620
+      },
+      "errors": 95,
+      "variables": 1194397,
+      "snapshot_bytes": 320759347
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5",
+      "pid": null,
+      "processed_unique": 19880,
+      "target": 19880,
+      "finished_at": "2026-10-17T23:20:58.676007+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 19880
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 19880
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 19873,
+        "failed": 7
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 19880
+      },
+      "status": "completed",
+      "updated_at": "2026-10-17T23:21:28.759782+00:00",
+      "last_computed_at": "2026-10-17T23:20:58.609504+00:00",
+      "metadata_status": {
+        "success": 19880
+      },
+      "errors": 92,
+      "variables": 1210142,
+      "snapshot_bytes": 325327455
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5",
+      "pid": null,
+      "processed_unique": 19825,
+      "target": 19825,
+      "finished_at": "2026-10-17T23:28:16.194992+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 19825
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 19825
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 19818,
+        "failed": 7
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 19825
+      },
+      "status": "completed",
+      "updated_at": "2026-10-17T23:28:46.134968+00:00",
+      "last_computed_at": "2026-10-17T23:28:16.103293+00:00",
+      "metadata_status": {
+        "success": 19825
+      },
+      "errors": 108,
+      "variables": 1206840,
+      "snapshot_bytes": 324756671
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5",
+      "pid": null,
+      "processed_unique": 19585,
+      "target": 19585,
+      "finished_at": "2026-10-17T22:59:52.040273+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 19585
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 19585
+        },
+        "log_dir": "logs/variable_processing/full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 19577,
+        "failed": 8
+      },
+      "llm_status_counts_checkpoint": {
+        "success": 19585
+      },
+      "status": "completed",
+      "updated_at": "2026-10-17T23:00:27.571041+00:00",
+      "last_computed_at": "2026-10-17T22:59:51.959225+00:00",
+      "metadata_status": {
+        "success": 19585
+      },
+      "errors": 109,
+      "variables": 1192335,
+      "snapshot_bytes": 321957129
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6",
+      "pid": null,
+      "processed_unique": 13558,
+      "target": 13558,
+      "finished_at": "2026-10-16T16:44:00.071709+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 13558
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 13558
+        },
+        "log_dir": "logs/variable_processing/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 13558
+      },
+      "llm_status_counts_checkpoint": {
+        "skipped": 13558
+      },
+      "status": "completed",
+      "updated_at": "2026-10-16T16:44:21.364335+00:00",
+      "last_computed_at": "2026-10-16T16:43:59.984424+00:00",
+      "metadata_status": {
+        "success": 13558
+      },
+      "errors": 0,
+      "variables": 420299,
+      "snapshot_bytes": 108504135
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6",
+      "pid": null,
+      "processed_unique": 13781,
+      "target": 13781,
+      "finished_at": "2026-10-16T18:25:56.181862+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 13781
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 13781
+        },
+        "log_dir": "logs/variable_processing/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 13781
+      },
+      "llm_status_counts_checkpoint": {
+        "skipped": 13781
+      },
+      "status": "completed",
+      "updated_at": "2026-10-16T18:26:10.848602+00:00",
+      "last_computed_at": "2026-10-16T18:25:56.113508+00:00",
+      "metadata_status": {
+        "success": 13781
+      },
+      "errors": 0,
+      "variables": 427212,
+      "snapshot_bytes": 110475198
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6",
+      "pid": null,
+      "processed_unique": 13569,
+      "target": 13569,
+      "finished_at": "2026-10-16T17:54:25.952829+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 13569
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 13569
+        },
+        "log_dir": "logs/variable_processing/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 13569
+      },
+      "llm_status_counts_checkpoint": {
+        "skipped": 13569
+      },
+      "status": "completed",
+      "updated_at": "2026-10-16T17:54:44.288480+00:00",
+      "last_computed_at": "2026-10-16T17:54:25.842442+00:00",
+      "metadata_status": {
+        "success": 13569
+      },
+      "errors": 0,
+      "variables": 420640,
+      "snapshot_bytes": 108867758
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6",
+      "pid": null,
+      "processed_unique": 13565,
+      "target": 13565,
+      "finished_at": "2026-10-16T18:04:49.847480+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 13565
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 13565
+        },
+        "log_dir": "logs/variable_processing/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 13565
+      },
+      "llm_status_counts_checkpoint": {
+        "skipped": 13565
+      },
+      "status": "completed",
+      "updated_at": "2026-10-16T18:05:07.684580+00:00",
+      "last_computed_at": "2026-10-16T18:04:49.754532+00:00",
+      "metadata_status": {
+        "success": 13565
+      },
+      "errors": 0,
+      "variables": 420516,
+      "snapshot_bytes": 108734324
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6",
+      "pid": null,
+      "processed_unique": 13717,
+      "target": 13717,
+      "finished_at": "2026-10-16T18:23:23.406024+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 13717
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 13717
+        },
+        "log_dir": "logs/variable_processing/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 13717
+      },
+      "llm_status_counts_checkpoint": {
+        "skipped": 13717
+      },
+      "status": "completed",
+      "updated_at": "2026-10-16T18:23:40.421391+00:00",
+      "last_computed_at": "2026-10-16T18:23:23.331936+00:00",
+      "metadata_status": {
+        "success": 13717
+      },
+      "errors": 0,
+      "variables": 425228,
+      "snapshot_bytes": 109902112
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6",
+      "pid": null,
+      "processed_unique": 13634,
+      "target": 13634,
+      "finished_at": "2026-10-16T18:12:19.012493+00:00",
+      "outputs": {
+        "parquet": {
+          "status": "success",
+          "flat_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6/analytics_variable_results_flat.parquet",
+          "flat_csv": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6/analytics_variable_results_flat.csv",
+          "raw_json_parquet": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6/analytics_variable_results_raw_json.parquet",
+          "incremental_jsonl": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6/results_incremental.jsonl"
+        },
+        "mongo": {
+          "status": "success",
+          "rows": 13634
+        },
+        "postgres": {
+          "status": "success",
+          "rows": 13634
+        },
+        "log_dir": "logs/variable_processing/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6",
+        "checkpoint": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6/checkpoint.json",
+        "incremental_results": "data/processed/pilot_variables/full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6/results_incremental.jsonl"
+      },
+      "hf_status_counts_checkpoint": {
+        "success": 13634
+      },
+      "llm_status_counts_checkpoint": {
+        "skipped": 13634
+      },
+      "status": "completed",
+      "updated_at": "2026-10-16T18:12:36.493277+00:00",
+      "last_computed_at": "2026-10-16T18:12:18.927717+00:00",
+      "metadata_status": {
+        "success": 13634
+      },
+      "errors": 0,
+      "variables": 422655,
+      "snapshot_bytes": 109134003
+    }
+  ],
+  "included_runs": [
+    "full_by_source_all_variables_llm_bluesky",
+    "full_by_source_all_variables_llm_gdelt",
+    "full_by_source_all_variables_llm_media_cloud",
+    "full_gliner25_multi_no_llm",
+    "full_parallel_all_variables_llm_bluesky_s0of1",
+    "full_parallel_all_variables_llm_gdelt_s0of1",
+    "full_parallel_all_variables_llm_media_cloud_s0of2",
+    "full_parallel_all_variables_llm_media_cloud_s1of2",
+    "full_parallel_all_variables_llm_remote_v1_bluesky_s0of3",
+    "full_parallel_all_variables_llm_remote_v1_bluesky_s1of3",
+    "full_parallel_all_variables_llm_remote_v1_bluesky_s2of3",
+    "full_parallel_all_variables_llm_remote_v1_media_cloud_s0of3",
+    "full_parallel_all_variables_llm_remote_v1_media_cloud_s1of3",
+    "full_parallel_all_variables_llm_remote_v1_media_cloud_s2of3",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s0of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s1of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s2of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s3of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s4of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s5of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s6of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s7of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s8of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s9of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s0of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s1of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s2of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s3of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s4of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s5of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s6of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s7of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s8of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s9of10",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s0of5",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s1of5",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s2of5",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s3of5",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s4of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5",
+    "full_parallel_all_variables_llm_v3_bluesky_s0of2",
+    "full_parallel_all_variables_llm_v3_bluesky_s1of2",
+    "full_parallel_all_variables_llm_v3_media_cloud_s0of2",
+    "full_parallel_all_variables_llm_v3_media_cloud_s1of2",
+    "full_parallel_all_variables_llm_v4_bluesky_s0of3",
+    "full_parallel_all_variables_llm_v4_bluesky_s1of3",
+    "full_parallel_all_variables_llm_v4_bluesky_s2of3",
+    "full_parallel_all_variables_llm_v4_media_cloud_s0of3",
+    "full_parallel_all_variables_llm_v4_media_cloud_s1of3",
+    "full_parallel_all_variables_llm_v4_media_cloud_s2of3",
+    "full_parallel_all_variables_llm_v5_bluesky_s0of2",
+    "full_parallel_all_variables_llm_v5_bluesky_s1of2",
+    "full_parallel_all_variables_llm_v5_media_cloud_s0of2",
+    "full_parallel_all_variables_llm_v5_media_cloud_s1of2",
+    "full_parallel_gliner25_multi_no_llm_bluesky_s0of2",
+    "full_parallel_gliner25_multi_no_llm_media_cloud_s0of2",
+    "full_parallel_gliner25_multi_no_llm_media_cloud_s1of2",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s0of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s1of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s2of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s3of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s4of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s5of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6",
+    "full_parallel_gliner25_multi_no_llm_v3_media_cloud_s1of2",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s0of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s1of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s2of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s3of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s4of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s5of6",
+    "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s0of4",
+    "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s1of4",
+    "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s2of4",
+    "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s3of4"
+  ],
+  "residual_documents": {
+    "hf": [
+      {
+        "document_id": "url_crawls:crawl_uq_eeb9008b5f1410c2d74c0245_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.150002+00:00"
+      },
+      {
+        "document_id": "url_crawls:crawl_uq_71195563eedd34a8d035c442_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.307509+00:00"
+      },
+      {
+        "document_id": "url_crawls:crawl_uq_284129fc3bccc01d1c786d6f_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.338146+00:00"
+      },
+      {
+        "document_id": "url_crawls:crawl_uq_0d14f24787f83b7e6cb3e092_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.198564+00:00"
+      },
+      {
+        "document_id": "url_crawls:crawl_uq_4a579e98b02902edf0c8697b_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.221951+00:00"
+      }
+    ],
+    "llm": [
+      {
+        "document_id": "bluesky_posts:bluesky_3knv2v7fabs2s",
+        "status": "failed",
+        "source": "bluesky",
+        "computed_at": "2026-10-07T01:22:17.537545+00:00"
+      }
+    ]
+  },
+  "methodology": {
+    "target_documents": 169248,
+    "source_targets": {
+      "bluesky": 64670,
+      "gdelt": 1198,
+      "media_cloud": 103380
+    },
+    "selection": {
+      "hf": [
+        "full_gliner25_multi_no_llm",
+        "full_parallel_gliner25_multi_no_llm_*"
+      ],
+      "llm": [
+        "full_by_source_all_variables_llm_*",
+        "full_parallel_all_variables_llm_*"
+      ]
+    },
+    "deduplication": "document_id; success takes priority; computed_at breaks ties",
+    "snapshot": "Read complete lines within file sizes captured at started_at_utc.",
+    "historical_comparison": "Reconstructing 2026-10-15 cutoff from computed_at returns the same success counts as published."
+  },
+  "infrastructure": {
+    "observed_local": "2026-10-17T22:24:51-05:00",
+    "logical_processors": 24,
+    "load_average": [
+      0.72,
+      0.94,
+      0.91
+    ],
+    "ram_total_gib": 250,
+    "ram_used_gib": 31,
+    "ram_available_gib": 219,
+    "swap_used": 0,
+    "disk_used_percent": 40,
+    "disk_used": "705G",
+    "disk_free": "1.1T",
+    "gpu_error": "Failed to initialize NVML: Driver/library version mismatch",
+    "nvml_library": "595.99",
+    "kernel_module": "595.84",
+    "final_process_check_local": "2026-10-17T22:26:13-05:00",
+    "final_prediction_process_count": 0
+  },
+  "output_file_verification": {
+    "observed_local": "2026-10-17T22:26:13-05:00",
+    "runs": [
+      {
+        "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      },
+      {
+        "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6",
+        "files": {
+          "flat_parquet": true,
+          "flat_csv": true,
+          "raw_json_parquet": true,
+          "incremental_jsonl": true
+        }
+      }
+    ],
+    "scope": "File existence only; MongoDB and PostgreSQL statuses are recorded checkpoint statuses, not independently queried."
+  }
+}
+

@@ -4,7 +4,8 @@ Guardar aqui las plantillas de prompt versionadas. Cada prompt debe producir JSO
 
 Prompt usado actualmente:
 
-- [llm_document_annotation_v1.md](llm_document_annotation_v1.md): prompt unico usado en el piloto `pilot_100_deepseek_full` para relevancia, sentimiento, emociones, narrativa, framing, actores y claims.
+- [llm_document_annotation_v2.md](llm_document_annotation_v2.md): prompt robusto actual para corrida por fuente con LLM, incorporando reglas del protocolo DRAGONS, limites metodologicos, reglas por fuente y definiciones operacionales.
+- [llm_document_annotation_v1.md](llm_document_annotation_v1.md): prompt usado en el piloto `pilot_100_deepseek_full` para relevancia, sentimiento, emociones, narrativa, framing, actores y claims.
 
 Prompts previstos para separar el flujo en versiones futuras:
 

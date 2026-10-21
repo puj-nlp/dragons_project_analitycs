@@ -5,6 +5,7 @@ import csv
 import hashlib
 import json
 import logging
+import math
 import os
 import re
 import sys
@@ -20,6 +21,8 @@ if VENDOR_DIR.exists():
 VENDOR_DIR_ALT = Path(__file__).resolve().parents[1] / "vendor_python"
 if VENDOR_DIR_ALT.exists():
     sys.path.insert(0, str(VENDOR_DIR_ALT))
+
+ROOT = Path(__file__).resolve().parents[1]
 
 import networkx as nx
 import pandas as pd
@@ -46,6 +49,29 @@ except Exception:  # pragma: no cover - optional dependency in some environments
 
 ALLOWED_SENTIMENT = {"positive", "neutral", "negative", "mixed", "unclear"}
 ALLOWED_EMOTIONS = {"concern", "fear", "anger", "sadness", "hope", "trust", "pride", "none", "unclear"}
+ALLOWED_FRAME_FAMILIES = [
+    "ecological_crisis",
+    "conservation_solution",
+    "policy_governance",
+    "justice_rights",
+    "economic_development",
+    "science_evidence",
+    "conflict_tradeoff",
+    "animal_welfare",
+    "indigenous_local_knowledge",
+    "risk_security",
+    "public_participation",
+    "unclear",
+]
+ALLOWED_FRAME_FUNCTIONS = [
+    "diagnostic",
+    "prognostic",
+    "motivational",
+    "moral_evaluation",
+    "mixed",
+    "unclear",
+]
+ALLOWED_FRAME_SCALES = ["local", "national", "regional", "global", "mixed", "unclear"]
 DEFAULT_GLINER_LABELS = [
     "person",
     "organization",
@@ -78,9 +104,67 @@ BIODIVERSITY_TERMS = {
     "extincion", "extinción", "climate", "clima", "water", "agua", "víz",
 }
 
+PROJECT_CODING_STANDARD = {
+    "project": "DRAGONS Task 1.1 biodiversity discourse analysis",
+    "scope": (
+        "Code public discourse from news and social media texts using only the supplied document text, "
+        "metadata, deterministic signals and GLiNER entities. Treat LLM outputs as analytical estimates "
+        "for validation, not as ground truth."
+    ),
+    "research_questions": [
+        "How biodiversity loss is represented in relation to condition, causes, impacts and urgency.",
+        "Which actors are associated with responsibility, agency, proposed action, blame, affectedness or expertise.",
+        "Which sentiment, emotion-related signals, narratives and dominant frames are observable in the text.",
+        "Which engagement, participation or action pathways are described in the text.",
+        "How observable discourse patterns vary by source type, outlet/platform, language, time and country metadata.",
+    ],
+    "hard_limits": [
+        "Do not classify truth or falsity.",
+        "Do not label content as disinformation, misinformation or misleading.",
+        "Do not infer algorithmic amplification, recommendation mechanisms, echo chambers or filter bubbles.",
+        "Do not infer personal identity attributes, residence, nationality, ideology or group membership unless explicit in the text.",
+        "Do not use external knowledge to add facts not present in the supplied document.",
+        "Use null, false, empty lists or 'unclear' when evidence is insufficient.",
+    ],
+    "evidence_rules": [
+        "Prefer short evidence spans copied or tightly paraphrased from the supplied text.",
+        "If a field asks for an actor, policy, species, ecosystem, place or claim, use names present in text or GLiNER entities.",
+        "If the text is too short, noisy, duplicated, off-topic or metadata-only, mark quality_flags accordingly.",
+        "Sentiment must be interpreted with target and frame: negative sentiment may mean concern about biodiversity loss, not opposition to biodiversity policy.",
+        "A topic cluster is not a narrative. A narrative needs a relation among actors, problems, causes, values, responsibilities and desired futures.",
+    ],
+    "source_rules": {
+        "media_cloud": "Usually news/media. Code outlet discourse and quoted actors; distinguish journalist framing from quoted actor claims when possible.",
+        "gdelt": "Usually event-linked news. Treat event context as metadata only; code only what the article text supports.",
+        "bluesky": "Social post. Code the post text and visible thread metadata only; do not infer audience response beyond supplied engagement counts.",
+    },
+}
+
+OPERATIONAL_DEFINITIONS = {
+    "is_relevant_biodiversity": "true only when biodiversity, conservation, ecosystem, species, habitat, restoration, nature governance or biodiversity policy is substantively present.",
+    "relevance_score": "0 means no relevance; 1 means biodiversity is central. Use intermediate values for partial or indirect relevance.",
+    "primary_topic": "main substantive issue in the document, not simply the source or country.",
+    "sentiment_label": "overall evaluative tone toward the central biodiversity-related issue, actor or policy; use mixed when targets differ.",
+    "emotion_labels": "emotion signals expressed in the text, not emotions inferred for the audience.",
+    "narrative_label": "short candidate narrative tying actors, problem, cause/value and direction of action.",
+    "dominant_frame": "the main interpretive frame: how the problem is defined, what causes it, what consequences matter and what response is implied.",
+    "actors": "actors explicitly mentioned or strongly supported by GLiNER entities; roles require textual evidence.",
+    "claim_typology": "classify the main claim form and evidence presence; do not verify whether the claim is true.",
+    "solution_orientation": "whether the document only describes a problem, proposes a solution, evaluates a solution or calls for action.",
+    "justice_equity_signal": "explicit signal of rights, equity, participation, affected communities or unequal costs/benefits.",
+    "uncertainty_signal": "explicit uncertainty, lack of evidence, technical controversy or need for more data.",
+    "conflict_polarization_signal": "explicit conflict between actors, values or interests; do not infer polarization from disagreement alone.",
+    "marginalised_frame_candidate": "possible underrepresented frame only when the text itself presents a distinct less-dominant perspective.",
+}
+
 
 def utcnow() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def resolve_repo_path(value: str) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else ROOT / path
 
 
 def load_dotenv(path: Path) -> None:
@@ -208,7 +292,13 @@ def setup_run(config: dict[str, Any], run_id: str | None) -> RunPaths:
 
 
 def append_jsonl(path: Path, record: dict[str, Any]) -> None:
+    needs_separator = path.exists() and path.stat().st_size > 0
     with path.open("a", encoding="utf-8") as handle:
+        if needs_separator:
+            with path.open("rb") as read_handle:
+                read_handle.seek(-1, os.SEEK_END)
+                if read_handle.read(1) != b"\n":
+                    handle.write("\n")
         handle.write(json.dumps(record, ensure_ascii=False, default=str) + "\n")
 
 
@@ -239,12 +329,75 @@ def load_incremental_results(path: Path) -> list[dict[str, Any]]:
     return list(records_by_id.values())
 
 
+def load_existing_document_ids_from_run_globs(patterns: list[str] | None) -> set[str]:
+    document_ids: set[str] = set()
+    if not patterns:
+        return document_ids
+    base_dir = Path("data/processed/pilot_variables")
+    for pattern in patterns:
+        for run_dir in base_dir.glob(pattern):
+            path = run_dir / "results_incremental.jsonl" if run_dir.is_dir() else run_dir
+            if not path.exists():
+                continue
+            for record in read_jsonl(path):
+                document_id = record.get("document_id")
+                if document_id:
+                    document_ids.add(str(document_id))
+    return document_ids
+
+
 def write_checkpoint(paths: RunPaths, record: dict[str, Any]) -> None:
-    paths.checkpoint_path.write_text(json.dumps(record, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    tmp_path = paths.checkpoint_path.with_suffix(paths.checkpoint_path.suffix + ".tmp")
+    payload = json.dumps(record, ensure_ascii=False, indent=2, default=str)
+    last_error: Exception | None = None
+    for attempt in range(1, 6):
+        try:
+            tmp_path.write_text(payload, encoding="utf-8")
+            os.replace(tmp_path, paths.checkpoint_path)
+            return
+        except PermissionError as exc:
+            last_error = exc
+            logging.warning("Checkpoint write attempt %s failed for %s: %s", attempt, paths.checkpoint_path, exc)
+            time.sleep(0.5 * attempt)
+    fallback_path = paths.checkpoint_path.with_name(
+        f"{paths.checkpoint_path.stem}.{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')}.json"
+    )
+    fallback_path.write_text(payload, encoding="utf-8")
+    logging.error("Checkpoint locked after retries; wrote fallback checkpoint to %s", fallback_path)
+    if last_error is not None:
+        logging.debug("Last checkpoint error", exc_info=last_error)
 
 
-def load_sample(config: dict[str, Any], limit_per_source: int, all_documents: bool = False, max_documents: int | None = None) -> pd.DataFrame:
-    path = Path(config["analytics_parquet"])
+def shard_value(value: Any, shard_count: int) -> int:
+    digest = hashlib.sha256(str(value).encode("utf-8", errors="ignore")).hexdigest()
+    return int(digest[:16], 16) % shard_count
+
+
+def apply_shard(df: pd.DataFrame, shard_index: int | None, shard_count: int | None) -> pd.DataFrame:
+    if shard_index is None and shard_count is None:
+        return df
+    if shard_index is None or shard_count is None:
+        raise ValueError("--shard-index and --shard-count must be provided together")
+    if shard_count <= 0:
+        raise ValueError("--shard-count must be greater than zero")
+    if shard_index < 0 or shard_index >= shard_count:
+        raise ValueError("--shard-index must be between 0 and shard-count - 1")
+    mask = df["document_id"].map(lambda value: shard_value(value, shard_count) == shard_index)
+    result = df[mask].reset_index(drop=True)
+    logging.info("Shard selected: index=%s count=%s rows=%s", shard_index, shard_count, len(result))
+    return result
+
+
+def load_sample(
+    config: dict[str, Any],
+    limit_per_source: int,
+    all_documents: bool = False,
+    max_documents: int | None = None,
+    shard_index: int | None = None,
+    shard_count: int | None = None,
+    input_parquet: str | None = None,
+) -> pd.DataFrame:
+    path = Path(input_parquet) if input_parquet else Path(config["analytics_parquet"])
     columns = [
         "document_id", "mongo_id", "collection_name", "source", "strategy",
         "source_type", "country_key", "language", "created_at", "url", "title",
@@ -260,6 +413,7 @@ def load_sample(config: dict[str, Any], limit_per_source: int, all_documents: bo
     df = df[df["text_clean"].str.len() >= min_chars]
     if all_documents:
         result = df.sort_values(["source", "created_at", "document_id"], na_position="last").reset_index(drop=True)
+        result = apply_shard(result, shard_index, shard_count)
         if max_documents is not None:
             result = result.head(max_documents).reset_index(drop=True)
         logging.info("Full dataset loaded: %s rows by source: %s", len(result), result["source"].value_counts().to_dict())
@@ -269,6 +423,7 @@ def load_sample(config: dict[str, Any], limit_per_source: int, all_documents: bo
         part = df[df["source"] == source].sort_values(["created_at", "document_id"], na_position="last")
         sampled.append(part.head(limit_per_source))
     result = pd.concat(sampled, ignore_index=True) if sampled else pd.DataFrame(columns=df.columns)
+    result = apply_shard(result, shard_index, shard_count)
     if max_documents is not None:
         result = result.head(max_documents).reset_index(drop=True)
     logging.info("Sample loaded: %s rows by source: %s", len(result), result["source"].value_counts().to_dict())
@@ -479,18 +634,38 @@ class HFModelClient:
             return {}, error
 
 
-def llm_prompt(row: pd.Series, deterministic: dict[str, Any], max_chars: int) -> list[dict[str, str]]:
+def llm_prompt(
+    row: pd.Series,
+    deterministic: dict[str, Any],
+    max_chars: int,
+    hf_data: dict[str, Any] | None = None,
+) -> list[dict[str, str]]:
     text = clean_text(row.get("text"))[:max_chars]
     title = clean_text(row.get("title"))
     language = row.get("language") or "unknown"
     source = row.get("source") or "unknown"
     system = (
-        "You are an analytical coding assistant for the DRAGONS biodiversity discourse project. "
-        "Return only valid JSON. Do not classify truth/falsity or disinformation. "
-        "If evidence is insufficient, use unclear or null."
+        "You are an expert analytical coder for DRAGONS Task 1.1 biodiversity discourse analysis. "
+        "Return only one valid JSON object matching the requested schema. "
+        "Use only the supplied title, text, metadata, deterministic signals and GLiNER entities. "
+        "Do not classify truth/falsity, disinformation or misinformation. "
+        "Do not infer algorithmic amplification or hidden platform mechanisms. "
+        "If evidence is insufficient, use unclear, null, false or empty lists as appropriate."
     )
     user = {
         "task": "Annotate one document for discourse variables.",
+        "project_coding_standard": PROJECT_CODING_STANDARD,
+        "operational_definitions": OPERATIONAL_DEFINITIONS,
+        "coding_instructions": [
+            "Code the document as one analytical unit.",
+            "Ground every interpretive field in the supplied text; use evidence_span fields when available.",
+            "Use GLiNER entities as candidate evidence, but do not add entities or actors that are not supported by the text.",
+            "Keep labels short and stable so they can be aggregated across documents.",
+            "Prefer 'unclear' over speculative coding.",
+            "For non-relevant or weakly relevant documents, still return the full schema with low relevance_score and conservative values.",
+            "For multilingual text, code in the language of the document but use the fixed English enum values exactly.",
+            "Do not expand the enum values. If no enum fits, use 'unclear' or the closest permitted value with lower confidence.",
+        ],
         "allowed_values": {
             "sentiment_label": sorted(ALLOWED_SENTIMENT),
             "emotion_labels": sorted(ALLOWED_EMOTIONS),
@@ -519,6 +694,9 @@ def llm_prompt(row: pd.Series, deterministic: dict[str, Any], max_chars: int) ->
                 "high_uncertainty", "moderate_uncertainty", "low_uncertainty",
                 "no_uncertainty_signal", "unclear",
             ],
+            "frame_family": ALLOWED_FRAME_FAMILIES,
+            "frame_function": ALLOWED_FRAME_FUNCTIONS,
+            "frame_scale": ALLOWED_FRAME_SCALES,
         },
         "required_json_schema": {
             "is_relevant_biodiversity": "boolean",
@@ -532,10 +710,36 @@ def llm_prompt(row: pd.Series, deterministic: dict[str, Any], max_chars: int) ->
             "narrative_summary": "one sentence",
             "dominant_frame": {
                 "frame_label": "short string",
+                "frame_family": "allowed value",
+                "frame_function": "allowed value",
+                "frame_scale": "allowed value",
                 "problem_definition": "short string or null",
                 "cause": "short string or null",
                 "consequence": "short string or null",
                 "solution": "short string or null",
+                "moral_evaluation": "short string or null",
+                "beneficiary_actor": "short string or null",
+                "affected_actor": "short string or null",
+                "evidence_span": "short string or null",
+            },
+            "framing_analysis": {
+                "diagnostic_frame": "how the text defines the problem, or null",
+                "causal_attribution": "actor/process blamed or identified as cause, or null",
+                "prognostic_frame": "solution or intervention proposed, or null",
+                "motivational_frame": "call to action, urgency or mobilizing argument, or null",
+                "risk_frame": "risk/threat emphasized, or null",
+                "opportunity_frame": "benefit/opportunity emphasized, or null",
+                "knowledge_authority_frame": "whose knowledge or expertise is privileged, or null",
+                "participation_frame": "how participation/inclusion/exclusion is framed, or null",
+                "economic_frame": "cost, funding, livelihood or development frame, or null",
+                "justice_rights_frame": "justice, rights, equity or affected community frame, or null",
+                "evidence_span": "short string or null",
+            },
+            "counter_frame_candidate": {
+                "is_present": "boolean",
+                "frame_label": "short string or null",
+                "contrasts_with": "short string or null",
+                "evidence_span": "short string or null",
             },
             "discursive_pattern": "short string",
             "actors": [{"text": "string", "role": "responsibility|agency|blame|affected|expert|other"}],
@@ -588,7 +792,9 @@ def llm_prompt(row: pd.Series, deterministic: dict[str, Any], max_chars: int) ->
             },
             "marginalised_frame_candidate": {
                 "is_candidate": "boolean",
+                "frame_label": "short string or null",
                 "reason": "short string or null",
+                "evidence_span": "short string or null",
             },
             "confidence": "number 0..1",
             "quality_flags": "list of short strings",
@@ -600,6 +806,8 @@ def llm_prompt(row: pd.Series, deterministic: dict[str, Any], max_chars: int) ->
             "country_key": row.get("country_key"),
             "created_at": row.get("created_at"),
             "keyword_matches": deterministic.get("keyword_matches", []),
+            "gliner_entities_sample": (hf_data or {}).get("gliner_named_entities", [])[:40],
+            "gliner_entity_counts_by_label": (hf_data or {}).get("gliner_entity_counts_by_label", {}),
         },
         "title": title,
         "text": text,
@@ -632,20 +840,65 @@ class LLMClient:
         self.config = config
         self.paths = paths
 
-    def annotate(self, row: pd.Series, deterministic: dict[str, Any]) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    def write_trace(
+        self,
+        row: pd.Series,
+        provider_name: str,
+        provider: dict[str, Any],
+        attempt: int,
+        payload: dict[str, Any] | None,
+        started: float,
+        status: str,
+        raw_response: dict[str, Any] | None = None,
+        raw_content: str | None = None,
+        parsed: dict[str, Any] | None = None,
+        error: dict[str, Any] | None = None,
+    ) -> None:
+        trace = {
+            "logged_at": utcnow(),
+            "run_id": self.paths.run_id,
+            "document_id": row.get("document_id"),
+            "source": row.get("source"),
+            "country_key": row.get("country_key"),
+            "language": row.get("language"),
+            "provider": provider_name,
+            "model": provider.get("model"),
+            "endpoint": provider.get("endpoint"),
+            "attempt": attempt,
+            "status": status,
+            "elapsed_seconds": round(time.time() - started, 3),
+            "request_payload": payload,
+            "response_raw": raw_response,
+            "response_content": raw_content,
+            "parsed_json": parsed,
+            "usage": (raw_response or {}).get("usage", {}),
+            "error": error,
+        }
+        append_jsonl(self.paths.log_dir / "llm_traces.jsonl", trace)
+
+    def annotate(
+        self,
+        row: pd.Series,
+        deterministic: dict[str, Any],
+        hf_data: dict[str, Any] | None = None,
+    ) -> tuple[dict[str, Any] | None, dict[str, Any]]:
         if not self.config["run"].get("llm_enabled", True):
             return None, {"status": "skipped", "reason": "llm_disabled"}
         max_chars = int(self.config["run"].get("max_text_chars_for_llm", 4500))
-        messages = llm_prompt(row, deterministic, max_chars)
+        messages = llm_prompt(row, deterministic, max_chars, hf_data)
         errors = []
         for provider_name in self.config["run"].get("llm_provider_order", ["deepseek", "openai"]):
             provider = self.config["models"][provider_name]
             token = os.environ.get(provider["token_env"])
             if not token:
-                errors.append({"provider": provider_name, "error": "missing_token"})
+                started = time.time()
+                error = {"provider": provider_name, "error": "missing_token"}
+                errors.append(error)
+                self.write_trace(row, provider_name, provider, 0, None, started, "skipped_missing_token", error=error)
                 continue
             for attempt in range(1, int(self.config["run"].get("llm_max_retries", 2)) + 1):
                 started = time.time()
+                payload: dict[str, Any] | None = None
                 try:
                     payload = {
                         "model": provider["model"],
@@ -671,8 +924,30 @@ class LLMClient:
                         "elapsed_seconds": round(time.time() - started, 3),
                         "usage": raw.get("usage", {}),
                     }
+                    self.write_trace(
+                        row,
+                        provider_name,
+                        provider,
+                        attempt,
+                        payload,
+                        started,
+                        "success",
+                        raw_response=raw,
+                        raw_content=content,
+                        parsed=parsed,
+                    )
                     return parsed, meta
                 except Exception as exc:
+                    raw_response = None
+                    raw_content = None
+                    if "response" in locals():
+                        try:
+                            raw_response = response.json()
+                        except Exception:
+                            try:
+                                raw_content = response.text
+                            except Exception:
+                                raw_content = None
                     error = {
                         "status": "error",
                         "provider": provider_name,
@@ -682,6 +957,18 @@ class LLMClient:
                         "error": str(exc)[:1000],
                     }
                     errors.append(error)
+                    self.write_trace(
+                        row,
+                        provider_name,
+                        provider,
+                        attempt,
+                        payload,
+                        started,
+                        "error",
+                        raw_response=raw_response,
+                        raw_content=raw_content,
+                        error=error,
+                    )
                     append_jsonl(self.paths.error_log_path, {**error, "logged_at": utcnow()})
                     time.sleep(min(2 * attempt, 5))
         return None, {"status": "failed", "errors": errors}
@@ -845,6 +1132,16 @@ def postgres_uri_from_config() -> str:
     return os.environ.get("POSTGRES_URI", "postgresql://dragons:dragons_dev_password@localhost:50020/dragons")
 
 
+def json_sanitize(value: Any) -> Any:
+    if isinstance(value, float) and (math.isnan(value) or math.isinf(value)):
+        return None
+    if isinstance(value, dict):
+        return {key: json_sanitize(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [json_sanitize(item) for item in value]
+    return value
+
+
 def write_mongo(config: dict[str, Any], paths: RunPaths, results: list[dict[str, Any]], run_record: dict[str, Any]) -> dict[str, Any]:
     if pymongo is None:
         return {"status": "skipped", "reason": "pymongo_not_available"}
@@ -931,12 +1228,12 @@ def write_postgres(config: dict[str, Any], paths: RunPaths, results: list[dict[s
                         (
                             record["result_id"], record["run_id"], record["document_id"], record["source"],
                             record.get("country_key"), record.get("language"), str(record.get("created_at")),
-                            record.get("title"), Jsonb(record.get("etl_metrics", {})),
-                            Jsonb(record.get("deterministic_variables", {})),
-                            Jsonb(record.get("hf_variables", {})),
-                            Jsonb(record.get("hf_metadata", {})),
-                            Jsonb(record.get("llm_variables", {})),
-                            Jsonb(record.get("llm_metadata", {})),
+                            record.get("title"), Jsonb(json_sanitize(record.get("etl_metrics", {}))),
+                            Jsonb(json_sanitize(record.get("deterministic_variables", {}))),
+                            Jsonb(json_sanitize(record.get("hf_variables", {}))),
+                            Jsonb(json_sanitize(record.get("hf_metadata", {}))),
+                            Jsonb(json_sanitize(record.get("llm_variables", {}))),
+                            Jsonb(json_sanitize(record.get("llm_metadata", {}))),
                             record.get("computed_at"),
                         ),
                     )
@@ -946,7 +1243,7 @@ def write_postgres(config: dict[str, Any], paths: RunPaths, results: list[dict[s
                     VALUES (%s, %s, %s)
                     ON CONFLICT (run_id) DO UPDATE SET run_record = EXCLUDED.run_record, updated_at = EXCLUDED.updated_at
                     """,
-                    (paths.run_id, Jsonb(run_record), utcnow()),
+                    (paths.run_id, Jsonb(json_sanitize(run_record)), utcnow()),
                 )
             conn.commit()
         return {"status": "success", "rows": len(results)}
@@ -1015,16 +1312,17 @@ def calculated_variables_manifest() -> dict[str, list[str]]:
             "gliner_named_entities", "gliner_entity_counts_by_label",
             "gliner_top_entity_labels",
         ],
-        "llm_variables": [
-            "is_relevant_biodiversity", "relevance_score", "primary_topic", "subtopic",
-            "sentiment_label", "emotion_labels", "emotional_intensity", "narrative_label",
-            "dominant_frame", "discursive_pattern", "actors", "responsibility_actor",
+            "llm_variables": [
+                "is_relevant_biodiversity", "relevance_score", "primary_topic", "subtopic",
+                "sentiment_label", "emotion_labels", "emotional_intensity", "narrative_label",
+                "dominant_frame", "framing_analysis", "counter_frame_candidate",
+                "discursive_pattern", "actors", "responsibility_actor",
             "agency_actor", "blame_actor", "proposed_action", "claim_typology",
             "stakeholder_presence", "biodiversity_object", "governance_policy_mentions",
             "solution_orientation", "justice_equity_signal", "uncertainty_signal",
             "conflict_polarization_signal",
-            "marginalised_frame_candidate", "confidence", "quality_flags",
-        ],
+                "marginalised_frame_candidate", "confidence", "quality_flags",
+            ],
         "sna_networkx": ["bluesky_author_reply_network"],
     }
 
@@ -1061,8 +1359,8 @@ def build_run_record(
 
 
 def run_pipeline(args: argparse.Namespace) -> int:
-    load_dotenv(Path(".env"))
-    config = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
+    load_dotenv(ROOT / ".env")
+    config = yaml.safe_load(resolve_repo_path(args.config).read_text(encoding="utf-8"))
     if args.limit_per_source is not None:
         config["run"]["limit_per_source"] = args.limit_per_source
     if args.no_llm:
@@ -1071,6 +1369,13 @@ def run_pipeline(args: argparse.Namespace) -> int:
         config.setdefault("hf_models", {})["enabled"] = False
     if args.hf_model:
         config.setdefault("hf_models", {}).setdefault("gliner", {})["model"] = args.hf_model
+    if args.sources:
+        configured_sources = set(config["run"].get("sources") or [])
+        requested_sources = list(dict.fromkeys(args.sources))
+        unknown_sources = sorted(set(requested_sources) - configured_sources)
+        if unknown_sources:
+            raise ValueError(f"Unknown source(s) for this config: {unknown_sources}")
+        config["run"]["sources"] = requested_sources
     paths = setup_run(config, args.run_id)
     started_at = utcnow()
     logging.info("Run started: %s", paths.run_id)
@@ -1079,11 +1384,18 @@ def run_pipeline(args: argparse.Namespace) -> int:
         int(config["run"]["limit_per_source"]),
         all_documents=args.all_documents,
         max_documents=args.max_documents,
+        shard_index=args.shard_index,
+        shard_count=args.shard_count,
+        input_parquet=args.input_parquet,
     )
     hf_client = HFModelClient(config, paths)
     client = LLMClient(config, paths)
     existing_results = load_incremental_results(paths.incremental_results_path) if args.resume else []
     processed_ids = {str(record.get("document_id")) for record in existing_results if record.get("document_id")}
+    external_processed_ids = load_existing_document_ids_from_run_globs(args.skip_existing_run_glob)
+    if external_processed_ids:
+        logging.info("Loaded %s externally processed document ids from %s", len(external_processed_ids), args.skip_existing_run_glob)
+        processed_ids.update(external_processed_ids)
     if existing_results:
         logging.info("Resume enabled: loaded %s existing document results from %s", len(existing_results), paths.incremental_results_path)
     results: list[dict[str, Any]] = list(existing_results)
@@ -1097,7 +1409,7 @@ def run_pipeline(args: argparse.Namespace) -> int:
         logging.info("Processing %s/%s %s", idx + 1, len(df), doc_id)
         deterministic = deterministic_variables(row)
         hf_data, hf_meta = hf_client.annotate(row)
-        llm_data, llm_meta = client.annotate(row, deterministic)
+        llm_data, llm_meta = client.annotate(row, deterministic, hf_data)
         result = build_result_record(row, deterministic, hf_data, hf_meta, llm_data, llm_meta, paths.run_id)
         results.append(result)
         append_jsonl(paths.incremental_results_path, result)
@@ -1110,7 +1422,10 @@ def run_pipeline(args: argparse.Namespace) -> int:
             "updated_at": utcnow(),
             "all_documents": args.all_documents,
             "target_rows": len(df),
+            "shard_index": args.shard_index,
+            "shard_count": args.shard_count,
             "rows_total_incremental": len(results),
+            "rows_skipped_external_existing": len(external_processed_ids),
             "rows_processed_this_invocation": processed_this_invocation,
             "last_document_id": doc_id,
             "incremental_results_path": str(paths.incremental_results_path),
@@ -1186,6 +1501,11 @@ def main() -> int:
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--max-documents", type=int)
     parser.add_argument("--stop-after", type=int)
+    parser.add_argument("--sources", nargs="+")
+    parser.add_argument("--shard-index", type=int)
+    parser.add_argument("--shard-count", type=int)
+    parser.add_argument("--input-parquet")
+    parser.add_argument("--skip-existing-run-glob", action="append")
     return run_pipeline(parser.parse_args())
 
 

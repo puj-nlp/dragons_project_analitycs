@@ -14,11 +14,18 @@ VENDOR_DIR_ALT = Path(__file__).resolve().parents[1] / "vendor_python"
 if VENDOR_DIR_ALT.exists():
     sys.path.insert(0, str(VENDOR_DIR_ALT))
 
+ROOT = Path(__file__).resolve().parents[1]
+
 import fitz
 import pandas as pd
 import yaml
 
 from run_pilot_processing import HFModelClient, clean_text, deterministic_variables, utcnow
+
+
+def resolve_repo_path(value: str) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else ROOT / path
 
 
 def extract_pdf_text(path: Path, max_pages: int | None = None, ocr: bool = True) -> dict[str, Any]:
@@ -101,8 +108,8 @@ def main() -> int:
     args = parser.parse_args()
 
     started = time.time()
-    pdf_path = Path(args.pdf)
-    config = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
+    pdf_path = resolve_repo_path(args.pdf)
+    config = yaml.safe_load(resolve_repo_path(args.config).read_text(encoding="utf-8"))
     if args.hf_model:
         config.setdefault("hf_models", {}).setdefault("gliner", {})["model"] = args.hf_model
     extracted = extract_pdf_text(pdf_path, max_pages=args.max_pages, ocr=not args.no_ocr)
@@ -110,7 +117,7 @@ def main() -> int:
     deterministic = deterministic_variables(row)
     hf_data, hf_meta = HFModelClient(config).annotate(row)
 
-    output_dir = Path(args.output_dir) / f"{pdf_path.stem}_{utcnow().replace(':', '').replace('+', 'Z')}"
+    output_dir = resolve_repo_path(args.output_dir) / f"{pdf_path.stem}_{utcnow().replace(':', '').replace('+', 'Z')}"
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "extracted_text.txt").write_text(extracted.get("text", ""), encoding="utf-8")
     record = {

@@ -9,6 +9,13 @@ import yaml
 
 from run_pilot_processing import RunPaths, load_dotenv, setup_run, write_mongo, write_postgres
 
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def resolve_repo_path(value: str) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else ROOT / path
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Sync an existing pilot run to Mongo/Postgres.")
@@ -18,10 +25,10 @@ def main() -> int:
     parser.add_argument("--postgres", action="store_true")
     args = parser.parse_args()
 
-    load_dotenv(Path(".env"))
-    config = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
-    parquet_dir = Path(config["outputs"]["parquet_dir"]) / args.run_id
-    log_dir = Path(config["outputs"]["log_dir"]) / args.run_id
+    load_dotenv(ROOT / ".env")
+    config = yaml.safe_load(resolve_repo_path(args.config).read_text(encoding="utf-8"))
+    parquet_dir = resolve_repo_path(config["outputs"]["parquet_dir"]) / args.run_id
+    log_dir = resolve_repo_path(config["outputs"]["log_dir"]) / args.run_id
     run_record_path = parquet_dir / "run_record.json"
     raw_path = parquet_dir / "analytics_variable_results_raw_json.parquet"
     if not run_record_path.exists():
@@ -39,6 +46,8 @@ def main() -> int:
         document_log_path=log_dir / "documents.jsonl",
         variable_log_path=log_dir / "variables.jsonl",
         error_log_path=log_dir / "errors.jsonl",
+        incremental_results_path=parquet_dir / "results_incremental.jsonl",
+        checkpoint_path=parquet_dir / "checkpoint.json",
     )
 
     outputs = {}

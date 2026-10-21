@@ -1,0 +1,490 @@
+{
+  "started_at_utc": "2026-10-15T05:26:54.989671+00:00",
+  "finished_at_utc": "2026-10-15T05:27:27.268493+00:00",
+  "historical_cutoff_utc": "2026-10-13T20:19:24+00:00",
+  "active": {
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5": 2458644,
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5": 2458646,
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5": 2458648,
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5": 2458650,
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5": 2458652,
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6": 2462500,
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6": 2462502,
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6": 2462504,
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6": 2462506,
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6": 2462508,
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6": 2462510
+  },
+  "raw": {
+    "llm": 108872,
+    "hf": 235637
+  },
+  "invalid": {
+    "hf": 1
+  },
+  "partial_tail_excluded": {},
+  "current": {
+    "hf": {
+      "unique": 169248,
+      "status": {
+        "success": 153808,
+        "failed": 15440
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64670
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 87940,
+          "failed": 15440
+        }
+      },
+      "providers": {
+        "huggingface": 153808
+      }
+    },
+    "llm": {
+      "unique": 108872,
+      "status": {
+        "success": 108871,
+        "failed": 1
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64669,
+          "failed": 1
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 43004
+        }
+      },
+      "providers": {
+        "deepseek": 108788,
+        "openai": 83
+      }
+    }
+  },
+  "historical_recalculated": {
+    "hf": {
+      "unique": 169248,
+      "status": {
+        "success": 138085,
+        "failed": 31163
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64670
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 72217,
+          "failed": 31163
+        }
+      },
+      "providers": {
+        "huggingface": 138085
+      }
+    },
+    "llm": {
+      "unique": 93381,
+      "status": {
+        "success": 93380,
+        "failed": 1
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64669,
+          "failed": 1
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 27513
+        }
+      },
+      "providers": {
+        "deepseek": 93339,
+        "openai": 41
+      }
+    }
+  },
+  "runs": [
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s0of5",
+      "pid": null,
+      "processed_unique": 10993,
+      "target": null,
+      "status": "completed",
+      "updated_at": "2026-10-13T18:33:51.369547+00:00",
+      "last_computed_at": "2026-10-13T18:33:39.006675+00:00",
+      "metadata_status": {
+        "success": 10993
+      },
+      "errors": 93,
+      "variables": 673673,
+      "snapshot_bytes": 89444626
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s1of5",
+      "pid": null,
+      "processed_unique": 10918,
+      "target": null,
+      "status": "completed",
+      "updated_at": "2026-10-13T18:09:08.130533+00:00",
+      "last_computed_at": "2026-10-13T18:08:54.065707+00:00",
+      "metadata_status": {
+        "success": 10918
+      },
+      "errors": 82,
+      "variables": 669154,
+      "snapshot_bytes": 89012682
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s2of5",
+      "pid": null,
+      "processed_unique": 10831,
+      "target": null,
+      "status": "completed",
+      "updated_at": "2026-10-13T17:16:03.626266+00:00",
+      "last_computed_at": "2026-10-13T17:15:47.586035+00:00",
+      "metadata_status": {
+        "success": 10831
+      },
+      "errors": 68,
+      "variables": 663713,
+      "snapshot_bytes": 88083719
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s3of5",
+      "pid": null,
+      "processed_unique": 10950,
+      "target": null,
+      "status": "completed",
+      "updated_at": "2026-10-13T18:30:28.428237+00:00",
+      "last_computed_at": "2026-10-13T18:30:13.640351+00:00",
+      "metadata_status": {
+        "success": 10950
+      },
+      "errors": 90,
+      "variables": 671146,
+      "snapshot_bytes": 89312004
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s4of5",
+      "pid": null,
+      "processed_unique": 10841,
+      "target": null,
+      "status": "completed",
+      "updated_at": "2026-10-13T17:38:14.570887+00:00",
+      "last_computed_at": "2026-10-13T17:37:58.670760+00:00",
+      "metadata_status": {
+        "success": 10841
+      },
+      "errors": 85,
+      "variables": 664434,
+      "snapshot_bytes": 88381166
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5",
+      "pid": 2458644,
+      "processed_unique": 7614,
+      "target": 19829,
+      "status": "running",
+      "updated_at": "2026-10-15T05:26:29.209324+00:00",
+      "last_computed_at": "2026-10-15T05:26:29.206594+00:00",
+      "metadata_status": {
+        "success": 7614
+      },
+      "errors": 47,
+      "variables": 464395,
+      "snapshot_bytes": 131350459
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5",
+      "pid": 2458646,
+      "processed_unique": 7729,
+      "target": 19620,
+      "status": "running",
+      "updated_at": "2026-10-15T05:27:07.495173+00:00",
+      "last_computed_at": "2026-10-15T05:26:39.624198+00:00",
+      "metadata_status": {
+        "success": 7729
+      },
+      "errors": 38,
+      "variables": 471470,
+      "snapshot_bytes": 132016158
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5",
+      "pid": 2458648,
+      "processed_unique": 7713,
+      "target": 19880,
+      "status": "running",
+      "updated_at": "2026-10-15T05:27:05.274589+00:00",
+      "last_computed_at": "2026-10-15T05:26:22.114606+00:00",
+      "metadata_status": {
+        "success": 7713
+      },
+      "errors": 32,
+      "variables": 470462,
+      "snapshot_bytes": 132153095
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5",
+      "pid": 2458650,
+      "processed_unique": 7664,
+      "target": 19825,
+      "status": "running",
+      "updated_at": "2026-10-15T05:27:03.046510+00:00",
+      "last_computed_at": "2026-10-15T05:26:23.035340+00:00",
+      "metadata_status": {
+        "success": 7664
+      },
+      "errors": 45,
+      "variables": 467512,
+      "snapshot_bytes": 131558678
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5",
+      "pid": 2458652,
+      "processed_unique": 7643,
+      "target": 19585,
+      "status": "running",
+      "updated_at": "2026-10-15T05:27:00.597771+00:00",
+      "last_computed_at": "2026-10-15T05:26:20.740772+00:00",
+      "metadata_status": {
+        "success": 7643
+      },
+      "errors": 44,
+      "variables": 466227,
+      "snapshot_bytes": 131776998
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6",
+      "pid": 2462500,
+      "processed_unique": 11124,
+      "target": 13558,
+      "status": "running",
+      "updated_at": "2026-10-15T05:26:32.083844+00:00",
+      "last_computed_at": "2026-10-15T05:26:32.082423+00:00",
+      "metadata_status": {
+        "success": 11124
+      },
+      "errors": 0,
+      "variables": 344844,
+      "snapshot_bytes": 89015152
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6",
+      "pid": 2462502,
+      "processed_unique": 11022,
+      "target": 13781,
+      "status": "running",
+      "updated_at": "2026-10-15T05:27:16.843621+00:00",
+      "last_computed_at": "2026-10-15T05:26:44.593044+00:00",
+      "metadata_status": {
+        "success": 11022
+      },
+      "errors": 0,
+      "variables": 341713,
+      "snapshot_bytes": 88497273
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6",
+      "pid": 2462504,
+      "processed_unique": 11067,
+      "target": 13569,
+      "status": "running",
+      "updated_at": "2026-10-15T05:24:50.827758+00:00",
+      "last_computed_at": "2026-10-15T05:24:50.824199+00:00",
+      "metadata_status": {
+        "success": 11067
+      },
+      "errors": 0,
+      "variables": 343077,
+      "snapshot_bytes": 88623172
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6",
+      "pid": 2462506,
+      "processed_unique": 11036,
+      "target": 13565,
+      "status": "running",
+      "updated_at": "2026-10-15T05:26:28.764833+00:00",
+      "last_computed_at": "2026-10-15T05:26:28.697349+00:00",
+      "metadata_status": {
+        "success": 11036
+      },
+      "errors": 0,
+      "variables": 342116,
+      "snapshot_bytes": 88347666
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6",
+      "pid": 2462508,
+      "processed_unique": 11081,
+      "target": 13717,
+      "status": "running",
+      "updated_at": "2026-10-15T05:26:32.662102+00:00",
+      "last_computed_at": "2026-10-15T05:26:32.649078+00:00",
+      "metadata_status": {
+        "success": 11081
+      },
+      "errors": 0,
+      "variables": 343511,
+      "snapshot_bytes": 88767295
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6",
+      "pid": 2462510,
+      "processed_unique": 11059,
+      "target": 13634,
+      "status": "running",
+      "updated_at": "2026-10-15T05:26:42.836748+00:00",
+      "last_computed_at": "2026-10-15T05:26:42.831255+00:00",
+      "metadata_status": {
+        "success": 11059
+      },
+      "errors": 0,
+      "variables": 342829,
+      "snapshot_bytes": 88524167
+    }
+  ],
+  "included_runs": [
+    "full_by_source_all_variables_llm_bluesky",
+    "full_by_source_all_variables_llm_gdelt",
+    "full_by_source_all_variables_llm_media_cloud",
+    "full_gliner25_multi_no_llm",
+    "full_parallel_all_variables_llm_bluesky_s0of1",
+    "full_parallel_all_variables_llm_gdelt_s0of1",
+    "full_parallel_all_variables_llm_media_cloud_s0of2",
+    "full_parallel_all_variables_llm_media_cloud_s1of2",
+    "full_parallel_all_variables_llm_remote_v1_bluesky_s0of3",
+    "full_parallel_all_variables_llm_remote_v1_bluesky_s1of3",
+    "full_parallel_all_variables_llm_remote_v1_bluesky_s2of3",
+    "full_parallel_all_variables_llm_remote_v1_media_cloud_s0of3",
+    "full_parallel_all_variables_llm_remote_v1_media_cloud_s1of3",
+    "full_parallel_all_variables_llm_remote_v1_media_cloud_s2of3",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s0of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s1of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s2of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s3of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s4of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s5of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s6of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s7of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s8of10",
+    "full_parallel_all_variables_llm_remote_v2_bluesky_s9of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s0of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s1of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s2of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s3of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s4of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s5of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s6of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s7of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s8of10",
+    "full_parallel_all_variables_llm_remote_v2_media_cloud_s9of10",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s0of5",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s1of5",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s2of5",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s3of5",
+    "full_parallel_all_variables_llm_remote_v3_bluesky_s4of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5",
+    "full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5",
+    "full_parallel_all_variables_llm_v3_bluesky_s0of2",
+    "full_parallel_all_variables_llm_v3_bluesky_s1of2",
+    "full_parallel_all_variables_llm_v3_media_cloud_s0of2",
+    "full_parallel_all_variables_llm_v3_media_cloud_s1of2",
+    "full_parallel_all_variables_llm_v4_bluesky_s0of3",
+    "full_parallel_all_variables_llm_v4_bluesky_s1of3",
+    "full_parallel_all_variables_llm_v4_bluesky_s2of3",
+    "full_parallel_all_variables_llm_v4_media_cloud_s0of3",
+    "full_parallel_all_variables_llm_v4_media_cloud_s1of3",
+    "full_parallel_all_variables_llm_v4_media_cloud_s2of3",
+    "full_parallel_all_variables_llm_v5_bluesky_s0of2",
+    "full_parallel_all_variables_llm_v5_bluesky_s1of2",
+    "full_parallel_all_variables_llm_v5_media_cloud_s0of2",
+    "full_parallel_all_variables_llm_v5_media_cloud_s1of2",
+    "full_parallel_gliner25_multi_no_llm_bluesky_s0of2",
+    "full_parallel_gliner25_multi_no_llm_media_cloud_s0of2",
+    "full_parallel_gliner25_multi_no_llm_media_cloud_s1of2",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s0of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s1of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s2of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s3of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s4of6",
+    "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s5of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6",
+    "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6",
+    "full_parallel_gliner25_multi_no_llm_v3_media_cloud_s1of2",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s0of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s1of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s2of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s3of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s4of6",
+    "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s5of6",
+    "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s0of4",
+    "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s1of4",
+    "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s2of4",
+    "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s3of4"
+  ],
+  "methodology": {
+    "selection": {
+      "hf": [
+        "full_gliner25_multi_no_llm",
+        "full_parallel_gliner25_multi_no_llm_*"
+      ],
+      "llm": [
+        "full_by_source_all_variables_llm_*",
+        "full_parallel_all_variables_llm_*"
+      ]
+    },
+    "deduplication": "document_id; success takes priority; computed_at breaks ties",
+    "target_documents": 169248,
+    "source_targets": {
+      "bluesky": 64670,
+      "gdelt": 1198,
+      "media_cloud": 103380
+    },
+    "snapshot": "Result file sizes captured at started_at_utc; read only complete lines within these sizes. Checkpoints and log counts sampled during audit.",
+    "historical_comparison": "Published 2026-10-13 report retained as baseline; historical_recalculated filters existing records by computed_at."
+  },
+  "infrastructure": {
+    "observed_local": "2026-10-15T00:26:27-05:00",
+    "logical_processors": 24,
+    "load_average": [
+      92.39,
+      91.53,
+      88.55
+    ],
+    "ram_total_gib": 250,
+    "ram_used_gib": 69,
+    "ram_available_gib": 181,
+    "swap_used": 0,
+    "disk_used_percent": 40,
+    "disk_free": "1.1T",
+    "gpu_error": "Failed to initialize NVML: Driver/library version mismatch",
+    "nvml_library": "595.99",
+    "kernel_module": "595.84",
+    "cpu_sample": "vmstat 1 3, 2026-10-15 00:27:27 America/Bogota: us 96%, sy 3-4%, id 0-1%",
+    "ollama_local_loaded_models": []
+  }
+}
+

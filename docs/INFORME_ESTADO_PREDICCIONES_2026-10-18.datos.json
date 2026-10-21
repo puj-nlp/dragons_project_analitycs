@@ -1,0 +1,1655 @@
+{
+  "started_at_utc": "2026-10-19T04:31:23.752429+00:00",
+  "finished_at_utc": "2026-10-19T04:41:16.942469+00:00",
+  "postgres_total_rows": 420320,
+  "mongo_total_rows": 420320,
+  "selected_run_count": 84,
+  "selected_rows": 420320,
+  "runs": [
+    {
+      "run_id": "full_gliner25_multi_no_llm",
+      "kind": "hf",
+      "source_rows": 73006,
+      "postgres_rows": 73006,
+      "mongo_rows": 73006,
+      "raw_parquet_rows": 73006,
+      "flat_parquet_rows": 73006,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_bluesky_s0of2",
+      "kind": "hf",
+      "source_rows": 1,
+      "postgres_rows": 1,
+      "mongo_rows": 1,
+      "raw_parquet_rows": 1,
+      "flat_parquet_rows": 1,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_media_cloud_s0of2",
+      "kind": "hf",
+      "source_rows": 6543,
+      "postgres_rows": 6543,
+      "mongo_rows": 6543,
+      "raw_parquet_rows": 6543,
+      "flat_parquet_rows": 6543,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_media_cloud_s1of2",
+      "kind": "hf",
+      "source_rows": 6699,
+      "postgres_rows": 6699,
+      "mongo_rows": 6699,
+      "raw_parquet_rows": 6699,
+      "flat_parquet_rows": 6699,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s0of6",
+      "kind": "hf",
+      "source_rows": 13558,
+      "postgres_rows": 13558,
+      "mongo_rows": 13558,
+      "raw_parquet_rows": 13558,
+      "flat_parquet_rows": 13558,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s1of6",
+      "kind": "hf",
+      "source_rows": 13781,
+      "postgres_rows": 13781,
+      "mongo_rows": 13781,
+      "raw_parquet_rows": 13781,
+      "flat_parquet_rows": 13781,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s2of6",
+      "kind": "hf",
+      "source_rows": 13569,
+      "postgres_rows": 13569,
+      "mongo_rows": 13569,
+      "raw_parquet_rows": 13569,
+      "flat_parquet_rows": 13569,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s3of6",
+      "kind": "hf",
+      "source_rows": 13565,
+      "postgres_rows": 13565,
+      "mongo_rows": 13565,
+      "raw_parquet_rows": 13565,
+      "flat_parquet_rows": 13565,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s4of6",
+      "kind": "hf",
+      "source_rows": 13717,
+      "postgres_rows": 13717,
+      "mongo_rows": 13717,
+      "raw_parquet_rows": 13717,
+      "flat_parquet_rows": 13717,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_remote_v1_media_cloud_s5of6",
+      "kind": "hf",
+      "source_rows": 13634,
+      "postgres_rows": 13634,
+      "mongo_rows": 13634,
+      "raw_parquet_rows": 13634,
+      "flat_parquet_rows": 13634,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6",
+      "kind": "hf",
+      "source_rows": 13558,
+      "postgres_rows": 13558,
+      "mongo_rows": 13558,
+      "raw_parquet_rows": 13558,
+      "flat_parquet_rows": 13558,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6",
+      "kind": "hf",
+      "source_rows": 13781,
+      "postgres_rows": 13781,
+      "mongo_rows": 13781,
+      "raw_parquet_rows": 13781,
+      "flat_parquet_rows": 13781,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6",
+      "kind": "hf",
+      "source_rows": 13569,
+      "postgres_rows": 13569,
+      "mongo_rows": 13569,
+      "raw_parquet_rows": 13569,
+      "flat_parquet_rows": 13569,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6",
+      "kind": "hf",
+      "source_rows": 13565,
+      "postgres_rows": 13565,
+      "mongo_rows": 13565,
+      "raw_parquet_rows": 13565,
+      "flat_parquet_rows": 13565,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6",
+      "kind": "hf",
+      "source_rows": 13717,
+      "postgres_rows": 13717,
+      "mongo_rows": 13717,
+      "raw_parquet_rows": 13717,
+      "flat_parquet_rows": 13717,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6",
+      "kind": "hf",
+      "source_rows": 13634,
+      "postgres_rows": 13634,
+      "mongo_rows": 13634,
+      "raw_parquet_rows": 13634,
+      "flat_parquet_rows": 13634,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v3_media_cloud_s1of2",
+      "kind": "hf",
+      "source_rows": 3,
+      "postgres_rows": 3,
+      "mongo_rows": 3,
+      "raw_parquet_rows": 3,
+      "flat_parquet_rows": 3,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s0of6",
+      "kind": "hf",
+      "source_rows": 34,
+      "postgres_rows": 34,
+      "mongo_rows": 34,
+      "raw_parquet_rows": 34,
+      "flat_parquet_rows": 34,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s1of6",
+      "kind": "hf",
+      "source_rows": 37,
+      "postgres_rows": 37,
+      "mongo_rows": 37,
+      "raw_parquet_rows": 37,
+      "flat_parquet_rows": 37,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s2of6",
+      "kind": "hf",
+      "source_rows": 21,
+      "postgres_rows": 21,
+      "mongo_rows": 21,
+      "raw_parquet_rows": 21,
+      "flat_parquet_rows": 21,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s3of6",
+      "kind": "hf",
+      "source_rows": 29,
+      "postgres_rows": 29,
+      "mongo_rows": 29,
+      "raw_parquet_rows": 29,
+      "flat_parquet_rows": 29,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s4of6",
+      "kind": "hf",
+      "source_rows": 29,
+      "postgres_rows": 29,
+      "mongo_rows": 29,
+      "raw_parquet_rows": 29,
+      "flat_parquet_rows": 29,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v4_media_cloud_s5of6",
+      "kind": "hf",
+      "source_rows": 26,
+      "postgres_rows": 26,
+      "mongo_rows": 26,
+      "raw_parquet_rows": 26,
+      "flat_parquet_rows": 26,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s0of4",
+      "kind": "hf",
+      "source_rows": 253,
+      "postgres_rows": 253,
+      "mongo_rows": 253,
+      "raw_parquet_rows": 253,
+      "flat_parquet_rows": 253,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s1of4",
+      "kind": "hf",
+      "source_rows": 265,
+      "postgres_rows": 265,
+      "mongo_rows": 265,
+      "raw_parquet_rows": 265,
+      "flat_parquet_rows": 265,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s2of4",
+      "kind": "hf",
+      "source_rows": 239,
+      "postgres_rows": 239,
+      "mongo_rows": 239,
+      "raw_parquet_rows": 239,
+      "flat_parquet_rows": 239,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_v5_media_cloud_s3of4",
+      "kind": "hf",
+      "source_rows": 239,
+      "postgres_rows": 239,
+      "mongo_rows": 239,
+      "raw_parquet_rows": 239,
+      "flat_parquet_rows": 239,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_by_source_all_variables_llm_bluesky",
+      "kind": "llm",
+      "source_rows": 2801,
+      "postgres_rows": 2801,
+      "mongo_rows": 2801,
+      "raw_parquet_rows": 2801,
+      "flat_parquet_rows": 2801,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_by_source_all_variables_llm_gdelt",
+      "kind": "llm",
+      "source_rows": 663,
+      "postgres_rows": 663,
+      "mongo_rows": 663,
+      "raw_parquet_rows": 663,
+      "flat_parquet_rows": 663,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_by_source_all_variables_llm_media_cloud",
+      "kind": "llm",
+      "source_rows": 1310,
+      "postgres_rows": 1310,
+      "mongo_rows": 1310,
+      "raw_parquet_rows": 1310,
+      "flat_parquet_rows": 1310,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_bluesky_s0of1",
+      "kind": "llm",
+      "source_rows": 5139,
+      "postgres_rows": 5139,
+      "mongo_rows": 5139,
+      "raw_parquet_rows": 5139,
+      "flat_parquet_rows": 5139,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_gdelt_s0of1",
+      "kind": "llm",
+      "source_rows": 535,
+      "postgres_rows": 535,
+      "mongo_rows": 535,
+      "raw_parquet_rows": 535,
+      "flat_parquet_rows": 535,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_media_cloud_s0of2",
+      "kind": "llm",
+      "source_rows": 2107,
+      "postgres_rows": 2107,
+      "mongo_rows": 2107,
+      "raw_parquet_rows": 2107,
+      "flat_parquet_rows": 2107,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_media_cloud_s1of2",
+      "kind": "llm",
+      "source_rows": 7,
+      "postgres_rows": 7,
+      "mongo_rows": 7,
+      "raw_parquet_rows": 7,
+      "flat_parquet_rows": 7,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v1_bluesky_s0of3",
+      "kind": "llm",
+      "source_rows": 430,
+      "postgres_rows": 430,
+      "mongo_rows": 430,
+      "raw_parquet_rows": 430,
+      "flat_parquet_rows": 430,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v1_bluesky_s1of3",
+      "kind": "llm",
+      "source_rows": 433,
+      "postgres_rows": 433,
+      "mongo_rows": 433,
+      "raw_parquet_rows": 433,
+      "flat_parquet_rows": 433,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v1_bluesky_s2of3",
+      "kind": "llm",
+      "source_rows": 429,
+      "postgres_rows": 429,
+      "mongo_rows": 429,
+      "raw_parquet_rows": 429,
+      "flat_parquet_rows": 429,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v1_media_cloud_s0of3",
+      "kind": "llm",
+      "source_rows": 264,
+      "postgres_rows": 264,
+      "mongo_rows": 264,
+      "raw_parquet_rows": 264,
+      "flat_parquet_rows": 264,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v1_media_cloud_s1of3",
+      "kind": "llm",
+      "source_rows": 266,
+      "postgres_rows": 266,
+      "mongo_rows": 266,
+      "raw_parquet_rows": 266,
+      "flat_parquet_rows": 266,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v1_media_cloud_s2of3",
+      "kind": "llm",
+      "source_rows": 266,
+      "postgres_rows": 266,
+      "mongo_rows": 266,
+      "raw_parquet_rows": 266,
+      "flat_parquet_rows": 266,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s0of10",
+      "kind": "llm",
+      "source_rows": 24,
+      "postgres_rows": 24,
+      "mongo_rows": 24,
+      "raw_parquet_rows": 24,
+      "flat_parquet_rows": 24,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s1of10",
+      "kind": "llm",
+      "source_rows": 23,
+      "postgres_rows": 23,
+      "mongo_rows": 23,
+      "raw_parquet_rows": 23,
+      "flat_parquet_rows": 23,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s2of10",
+      "kind": "llm",
+      "source_rows": 23,
+      "postgres_rows": 23,
+      "mongo_rows": 23,
+      "raw_parquet_rows": 23,
+      "flat_parquet_rows": 23,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s3of10",
+      "kind": "llm",
+      "source_rows": 23,
+      "postgres_rows": 23,
+      "mongo_rows": 23,
+      "raw_parquet_rows": 23,
+      "flat_parquet_rows": 23,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s4of10",
+      "kind": "llm",
+      "source_rows": 24,
+      "postgres_rows": 24,
+      "mongo_rows": 24,
+      "raw_parquet_rows": 24,
+      "flat_parquet_rows": 24,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s5of10",
+      "kind": "llm",
+      "source_rows": 23,
+      "postgres_rows": 23,
+      "mongo_rows": 23,
+      "raw_parquet_rows": 23,
+      "flat_parquet_rows": 23,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s6of10",
+      "kind": "llm",
+      "source_rows": 24,
+      "postgres_rows": 24,
+      "mongo_rows": 24,
+      "raw_parquet_rows": 24,
+      "flat_parquet_rows": 24,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s7of10",
+      "kind": "llm",
+      "source_rows": 23,
+      "postgres_rows": 23,
+      "mongo_rows": 23,
+      "raw_parquet_rows": 23,
+      "flat_parquet_rows": 23,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s8of10",
+      "kind": "llm",
+      "source_rows": 24,
+      "postgres_rows": 24,
+      "mongo_rows": 24,
+      "raw_parquet_rows": 24,
+      "flat_parquet_rows": 24,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_bluesky_s9of10",
+      "kind": "llm",
+      "source_rows": 23,
+      "postgres_rows": 23,
+      "mongo_rows": 23,
+      "raw_parquet_rows": 23,
+      "flat_parquet_rows": 23,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s0of10",
+      "kind": "llm",
+      "source_rows": 14,
+      "postgres_rows": 14,
+      "mongo_rows": 14,
+      "raw_parquet_rows": 14,
+      "flat_parquet_rows": 14,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s1of10",
+      "kind": "llm",
+      "source_rows": 15,
+      "postgres_rows": 15,
+      "mongo_rows": 15,
+      "raw_parquet_rows": 15,
+      "flat_parquet_rows": 15,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s2of10",
+      "kind": "llm",
+      "source_rows": 13,
+      "postgres_rows": 13,
+      "mongo_rows": 13,
+      "raw_parquet_rows": 13,
+      "flat_parquet_rows": 13,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s3of10",
+      "kind": "llm",
+      "source_rows": 13,
+      "postgres_rows": 13,
+      "mongo_rows": 13,
+      "raw_parquet_rows": 13,
+      "flat_parquet_rows": 13,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s4of10",
+      "kind": "llm",
+      "source_rows": 15,
+      "postgres_rows": 15,
+      "mongo_rows": 15,
+      "raw_parquet_rows": 15,
+      "flat_parquet_rows": 15,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s5of10",
+      "kind": "llm",
+      "source_rows": 14,
+      "postgres_rows": 14,
+      "mongo_rows": 14,
+      "raw_parquet_rows": 14,
+      "flat_parquet_rows": 14,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s6of10",
+      "kind": "llm",
+      "source_rows": 15,
+      "postgres_rows": 15,
+      "mongo_rows": 15,
+      "raw_parquet_rows": 15,
+      "flat_parquet_rows": 15,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s7of10",
+      "kind": "llm",
+      "source_rows": 16,
+      "postgres_rows": 16,
+      "mongo_rows": 16,
+      "raw_parquet_rows": 16,
+      "flat_parquet_rows": 16,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s8of10",
+      "kind": "llm",
+      "source_rows": 14,
+      "postgres_rows": 14,
+      "mongo_rows": 14,
+      "raw_parquet_rows": 14,
+      "flat_parquet_rows": 14,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v2_media_cloud_s9of10",
+      "kind": "llm",
+      "source_rows": 12,
+      "postgres_rows": 12,
+      "mongo_rows": 12,
+      "raw_parquet_rows": 12,
+      "flat_parquet_rows": 12,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s0of5",
+      "kind": "llm",
+      "source_rows": 10993,
+      "postgres_rows": 10993,
+      "mongo_rows": 10993,
+      "raw_parquet_rows": 10993,
+      "flat_parquet_rows": 10993,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s1of5",
+      "kind": "llm",
+      "source_rows": 10918,
+      "postgres_rows": 10918,
+      "mongo_rows": 10918,
+      "raw_parquet_rows": 10918,
+      "flat_parquet_rows": 10918,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s2of5",
+      "kind": "llm",
+      "source_rows": 10831,
+      "postgres_rows": 10831,
+      "mongo_rows": 10831,
+      "raw_parquet_rows": 10831,
+      "flat_parquet_rows": 10831,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s3of5",
+      "kind": "llm",
+      "source_rows": 10950,
+      "postgres_rows": 10950,
+      "mongo_rows": 10950,
+      "raw_parquet_rows": 10950,
+      "flat_parquet_rows": 10950,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_bluesky_s4of5",
+      "kind": "llm",
+      "source_rows": 10841,
+      "postgres_rows": 10841,
+      "mongo_rows": 10841,
+      "raw_parquet_rows": 10841,
+      "flat_parquet_rows": 10841,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5",
+      "kind": "llm",
+      "source_rows": 19829,
+      "postgres_rows": 19829,
+      "mongo_rows": 19829,
+      "raw_parquet_rows": 19829,
+      "flat_parquet_rows": 19829,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5",
+      "kind": "llm",
+      "source_rows": 19620,
+      "postgres_rows": 19620,
+      "mongo_rows": 19620,
+      "raw_parquet_rows": 19620,
+      "flat_parquet_rows": 19620,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5",
+      "kind": "llm",
+      "source_rows": 19880,
+      "postgres_rows": 19880,
+      "mongo_rows": 19880,
+      "raw_parquet_rows": 19880,
+      "flat_parquet_rows": 19880,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5",
+      "kind": "llm",
+      "source_rows": 19825,
+      "postgres_rows": 19825,
+      "mongo_rows": 19825,
+      "raw_parquet_rows": 19825,
+      "flat_parquet_rows": 19825,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5",
+      "kind": "llm",
+      "source_rows": 19585,
+      "postgres_rows": 19585,
+      "mongo_rows": 19585,
+      "raw_parquet_rows": 19585,
+      "flat_parquet_rows": 19585,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v3_bluesky_s0of2",
+      "kind": "llm",
+      "source_rows": 38,
+      "postgres_rows": 38,
+      "mongo_rows": 38,
+      "raw_parquet_rows": 38,
+      "flat_parquet_rows": 38,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v3_bluesky_s1of2",
+      "kind": "llm",
+      "source_rows": 37,
+      "postgres_rows": 37,
+      "mongo_rows": 37,
+      "raw_parquet_rows": 37,
+      "flat_parquet_rows": 37,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v3_media_cloud_s0of2",
+      "kind": "llm",
+      "source_rows": 17,
+      "postgres_rows": 17,
+      "mongo_rows": 17,
+      "raw_parquet_rows": 17,
+      "flat_parquet_rows": 17,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v3_media_cloud_s1of2",
+      "kind": "llm",
+      "source_rows": 16,
+      "postgres_rows": 16,
+      "mongo_rows": 16,
+      "raw_parquet_rows": 16,
+      "flat_parquet_rows": 16,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v4_bluesky_s0of3",
+      "kind": "llm",
+      "source_rows": 35,
+      "postgres_rows": 35,
+      "mongo_rows": 35,
+      "raw_parquet_rows": 35,
+      "flat_parquet_rows": 35,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v4_bluesky_s1of3",
+      "kind": "llm",
+      "source_rows": 35,
+      "postgres_rows": 35,
+      "mongo_rows": 35,
+      "raw_parquet_rows": 35,
+      "flat_parquet_rows": 35,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v4_bluesky_s2of3",
+      "kind": "llm",
+      "source_rows": 35,
+      "postgres_rows": 35,
+      "mongo_rows": 35,
+      "raw_parquet_rows": 35,
+      "flat_parquet_rows": 35,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v4_media_cloud_s0of3",
+      "kind": "llm",
+      "source_rows": 10,
+      "postgres_rows": 10,
+      "mongo_rows": 10,
+      "raw_parquet_rows": 10,
+      "flat_parquet_rows": 10,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v4_media_cloud_s1of3",
+      "kind": "llm",
+      "source_rows": 12,
+      "postgres_rows": 12,
+      "mongo_rows": 12,
+      "raw_parquet_rows": 12,
+      "flat_parquet_rows": 12,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v4_media_cloud_s2of3",
+      "kind": "llm",
+      "source_rows": 12,
+      "postgres_rows": 12,
+      "mongo_rows": 12,
+      "raw_parquet_rows": 12,
+      "flat_parquet_rows": 12,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v5_bluesky_s0of2",
+      "kind": "llm",
+      "source_rows": 246,
+      "postgres_rows": 246,
+      "mongo_rows": 246,
+      "raw_parquet_rows": 246,
+      "flat_parquet_rows": 246,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v5_bluesky_s1of2",
+      "kind": "llm",
+      "source_rows": 245,
+      "postgres_rows": 245,
+      "mongo_rows": 245,
+      "raw_parquet_rows": 245,
+      "flat_parquet_rows": 245,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v5_media_cloud_s0of2",
+      "kind": "llm",
+      "source_rows": 110,
+      "postgres_rows": 110,
+      "mongo_rows": 110,
+      "raw_parquet_rows": 110,
+      "flat_parquet_rows": 110,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_v5_media_cloud_s1of2",
+      "kind": "llm",
+      "source_rows": 103,
+      "postgres_rows": 103,
+      "mongo_rows": 103,
+      "raw_parquet_rows": 103,
+      "flat_parquet_rows": 103,
+      "checks": {
+        "postgres_payload": true,
+        "mongo_payload": true,
+        "raw_parquet_payload": true,
+        "flat_parquet_identity_status": true,
+        "mongo_run_record": true,
+        "postgres_run_record": true
+      }
+    }
+  ],
+  "issues": [],
+  "all_checks_passed": true,
+  "current": {
+    "hf": {
+      "unique": 169248,
+      "status": {
+        "success": 169243,
+        "failed": 5
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64670
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 103375,
+          "failed": 5
+        }
+      },
+      "providers": {
+        "huggingface": 169243
+      }
+    },
+    "llm": {
+      "unique": 169248,
+      "status": {
+        "success": 169247,
+        "failed": 1
+      },
+      "sources": {
+        "bluesky": {
+          "success": 64669,
+          "failed": 1
+        },
+        "gdelt": {
+          "success": 1198
+        },
+        "media_cloud": {
+          "success": 103380
+        }
+      },
+      "providers": {
+        "deepseek": 169139,
+        "openai": 108
+      }
+    }
+  },
+  "invalid_jsonl_lines": {
+    "hf": 1
+  },
+  "residual_documents": {
+    "hf": [
+      {
+        "document_id": "url_crawls:crawl_uq_eeb9008b5f1410c2d74c0245_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.150002+00:00"
+      },
+      {
+        "document_id": "url_crawls:crawl_uq_71195563eedd34a8d035c442_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.307509+00:00"
+      },
+      {
+        "document_id": "url_crawls:crawl_uq_284129fc3bccc01d1c786d6f_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.338146+00:00"
+      },
+      {
+        "document_id": "url_crawls:crawl_uq_0d14f24787f83b7e6cb3e092_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.198564+00:00"
+      },
+      {
+        "document_id": "url_crawls:crawl_uq_4a579e98b02902edf0c8697b_media_cloud_whitelist",
+        "status": "failed",
+        "source": "media_cloud",
+        "computed_at": "2026-10-09T01:00:22.221951+00:00"
+      }
+    ],
+    "llm": [
+      {
+        "document_id": "bluesky_posts:bluesky_3knv2v7fabs2s",
+        "status": "failed",
+        "source": "bluesky",
+        "computed_at": "2026-10-07T01:22:17.537545+00:00"
+      }
+    ]
+  },
+  "active_prediction_processes": [],
+  "final_checkpoints": [
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s0of6",
+      "status": "completed",
+      "target": 13558,
+      "finished_at": "2026-10-16T16:44:00.071709+00:00"
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s1of6",
+      "status": "completed",
+      "target": 13781,
+      "finished_at": "2026-10-16T18:25:56.181862+00:00"
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s2of6",
+      "status": "completed",
+      "target": 13569,
+      "finished_at": "2026-10-16T17:54:25.952829+00:00"
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s3of6",
+      "status": "completed",
+      "target": 13565,
+      "finished_at": "2026-10-16T18:04:49.847480+00:00"
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s4of6",
+      "status": "completed",
+      "target": 13717,
+      "finished_at": "2026-10-16T18:23:23.406024+00:00"
+    },
+    {
+      "run_id": "full_parallel_gliner25_multi_no_llm_repair_peft_v1_media_cloud_s5of6",
+      "status": "completed",
+      "target": 13634,
+      "finished_at": "2026-10-16T18:12:19.012493+00:00"
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s0of5",
+      "status": "completed",
+      "target": 19829,
+      "finished_at": "2026-10-17T23:40:38.882521+00:00"
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s1of5",
+      "status": "completed",
+      "target": 19620,
+      "finished_at": "2026-10-17T22:34:01.307209+00:00"
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s2of5",
+      "status": "completed",
+      "target": 19880,
+      "finished_at": "2026-10-17T23:20:58.676007+00:00"
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s3of5",
+      "status": "completed",
+      "target": 19825,
+      "finished_at": "2026-10-17T23:28:16.194992+00:00"
+    },
+    {
+      "run_id": "full_parallel_all_variables_llm_remote_v3_media_cloud_s4of5",
+      "status": "completed",
+      "target": 19585,
+      "finished_at": "2026-10-17T22:59:52.040273+00:00"
+    }
+  ],
+  "destinations": {
+    "parquet_dir": "data/processed/pilot_variables",
+    "log_dir": "logs/variable_processing",
+    "mongo_database": "dragons",
+    "mongo_results_collection": "analytics_variable_results_pilot",
+    "mongo_runs_collection": "analytics_variable_runs",
+    "postgres_schema": "public",
+    "postgres_results_table": "analytics_variable_results_pilot",
+    "postgres_runs_table": "analytics_variable_runs"
+  },
+  "sync_summary": [
+    {
+      "status": "complete",
+      "runs": 84,
+      "rows": 420320
+    }
+  ],
+  "sync_log": "logs/sync/final_sync_2026-10-18.log",
+  "validation_scope": "All 15 PostgreSQL payload fields normalized identically across JSONL, MongoDB, PostgreSQL and raw Parquet; flat Parquet checks identity/source/status and row count. Run metadata rows_synced checked in both databases.",
+  "runtime_final": {
+    "checked_at_local": "2026-10-18T23:41:43.234001-05:00",
+    "project_jobs": [],
+    "model_inference_processes": [],
+    "ollama_local": {
+      "models": []
+    }
+  },
+  "infrastructure": {
+    "logical_processors": 24,
+    "load_average": [
+      1.6396484375,
+      1.896484375,
+      1.76806640625
+    ],
+    "ram_total_gib": 251,
+    "ram_available_gib": 219.5,
+    "swap_used_gib": 0,
+    "disk_free_gib": 1063.7,
+    "disk_used_percent": 37.9,
+    "gpu_query_exit": 18,
+    "gpu_query_message": "Failed to initialize NVML: Driver/library version mismatch\nNVML library version: 595.99"
+  },
+  "normalization_fix": {
+    "file": "scripts/sync_incremental_outputs.py",
+    "line": 282,
+    "description": "Sanitize every result before Parquet, MongoDB and PostgreSQL export. Nonfinite float values become null; literal strings remain unchanged.",
+    "sha256": "e460f73360c875fb57d8d48fbeb75e0f91ce4d7a9b451e30ccfdc7f3a35d6c9a",
+    "syntax_and_nested_nonfinite_check_passed": true
+  },
+  "pre_sync_counts": {
+    "postgres_exact": 417857,
+    "mongo_estimated": 417857
+  }
+}
+

@@ -66,6 +66,8 @@ No iniciar sobre toda la base sin aprobar costo, tiempo y cuota. Para una muestr
 py scripts\run_pilot_processing.py --run-id llm_sample_15 --limit-per-source 5 --resume --hf-model fastino/gliner2.5-small-v1
 ```
 
+Esta corrida usa DeepSeek primero si existe `DEEPSEEK_TOKEN` en `.env` o en el ambiente. OpenAI queda como fallback solo si DeepSeek falla o no hay token.
+
 Para toda la base con LLM, solo despues de aprobar presupuesto:
 
 ```powershell
@@ -131,4 +133,3 @@ Resultado:
 ## Nota operativa
 
 Si se cambia el modelo, el prompt o la configuracion de variables, usar un `run_id` nuevo. Si se reutiliza el mismo `run_id`, `--resume` asumira que los documentos existentes ya son validos y no los recalculara.
-

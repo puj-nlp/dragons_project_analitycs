@@ -89,6 +89,36 @@ El mensaje de usuario se envia como JSON con esta estructura:
       "low_uncertainty",
       "no_uncertainty_signal",
       "unclear"
+    ],
+    "frame_family": [
+      "ecological_crisis",
+      "conservation_solution",
+      "policy_governance",
+      "justice_rights",
+      "economic_development",
+      "science_evidence",
+      "conflict_tradeoff",
+      "animal_welfare",
+      "indigenous_local_knowledge",
+      "risk_security",
+      "public_participation",
+      "unclear"
+    ],
+    "frame_function": [
+      "diagnostic",
+      "prognostic",
+      "motivational",
+      "moral_evaluation",
+      "mixed",
+      "unclear"
+    ],
+    "frame_scale": [
+      "local",
+      "national",
+      "regional",
+      "global",
+      "mixed",
+      "unclear"
     ]
   },
   "required_json_schema": {
@@ -103,10 +133,36 @@ El mensaje de usuario se envia como JSON con esta estructura:
     "narrative_summary": "one sentence",
     "dominant_frame": {
       "frame_label": "short string",
+      "frame_family": "allowed value",
+      "frame_function": "allowed value",
+      "frame_scale": "allowed value",
       "problem_definition": "short string or null",
       "cause": "short string or null",
       "consequence": "short string or null",
-      "solution": "short string or null"
+      "solution": "short string or null",
+      "moral_evaluation": "short string or null",
+      "beneficiary_actor": "short string or null",
+      "affected_actor": "short string or null",
+      "evidence_span": "short string or null"
+    },
+    "framing_analysis": {
+      "diagnostic_frame": "how the text defines the problem, or null",
+      "causal_attribution": "actor/process blamed or identified as cause, or null",
+      "prognostic_frame": "solution or intervention proposed, or null",
+      "motivational_frame": "call to action, urgency or mobilizing argument, or null",
+      "risk_frame": "risk/threat emphasized, or null",
+      "opportunity_frame": "benefit/opportunity emphasized, or null",
+      "knowledge_authority_frame": "whose knowledge or expertise is privileged, or null",
+      "participation_frame": "how participation/inclusion/exclusion is framed, or null",
+      "economic_frame": "cost, funding, livelihood or development frame, or null",
+      "justice_rights_frame": "justice, rights, equity or affected community frame, or null",
+      "evidence_span": "short string or null"
+    },
+    "counter_frame_candidate": {
+      "is_present": "boolean",
+      "frame_label": "short string or null",
+      "contrasts_with": "short string or null",
+      "evidence_span": "short string or null"
     },
     "discursive_pattern": "short string",
     "actors": [
@@ -164,7 +220,9 @@ El mensaje de usuario se envia como JSON con esta estructura:
     },
     "marginalised_frame_candidate": {
       "is_candidate": "boolean",
-      "reason": "short string or null"
+      "frame_label": "short string or null",
+      "reason": "short string or null",
+      "evidence_span": "short string or null"
     },
     "confidence": "number 0..1",
     "quality_flags": "list of short strings"
@@ -175,7 +233,9 @@ El mensaje de usuario se envia como JSON con esta estructura:
     "language": "<language>",
     "country_key": "<country_key>",
     "created_at": "<created_at>",
-    "keyword_matches": []
+    "keyword_matches": [],
+    "gliner_entities_sample": [],
+    "gliner_entity_counts_by_label": {}
   },
   "title": "<title>",
   "text": "<text truncated to max_text_chars_for_llm>"
@@ -208,6 +268,8 @@ fallback_model: gpt-4o-mini
 - `narrative_label`
 - `narrative_summary`
 - `dominant_frame`
+- `framing_analysis`
+- `counter_frame_candidate`
 - `discursive_pattern`
 - `actors`
 - `stakeholder_presence`
@@ -261,6 +323,68 @@ outputs:
   - gliner_entity_counts_by_label
   - gliner_top_entity_labels
 ```
+
+## Variables Que Debe Calcular DeepSeek / LLM
+
+DeepSeek es el primer proveedor configurado en `config/pipeline_config.yml`:
+
+```yaml
+llm_provider_order:
+  - deepseek
+  - openai
+models:
+  deepseek:
+    endpoint: https://api.deepseek.com/chat/completions
+    model: deepseek-chat
+```
+
+Las siguientes variables deben calcularse con DeepSeek porque requieren juicio interpretativo:
+
+### Framing
+
+- `dominant_frame`
+- `framing_analysis.diagnostic_frame`
+- `framing_analysis.causal_attribution`
+- `framing_analysis.prognostic_frame`
+- `framing_analysis.motivational_frame`
+- `framing_analysis.risk_frame`
+- `framing_analysis.opportunity_frame`
+- `framing_analysis.knowledge_authority_frame`
+- `framing_analysis.participation_frame`
+- `framing_analysis.economic_frame`
+- `framing_analysis.justice_rights_frame`
+- `counter_frame_candidate`
+- `marginalised_frame_candidate`
+- `conflict_polarization_signal`
+
+### Resto De Variables Interpretativas LLM
+
+- `is_relevant_biodiversity`
+- `relevance_score`
+- `primary_topic`
+- `subtopic`
+- `sentiment_label`
+- `emotion_labels`
+- `emotional_intensity`
+- `narrative_label`
+- `narrative_summary`
+- `discursive_pattern`
+- `actors`
+- `responsibility_actor`
+- `agency_actor`
+- `blame_actor`
+- `proposed_action`
+- `stakeholder_presence`
+- `biodiversity_object`
+- `governance_policy_mentions`
+- `claim_typology`
+- `solution_orientation`
+- `justice_equity_signal`
+- `uncertainty_signal`
+- `confidence`
+- `quality_flags`
+
+DeepSeek recibe tambien una muestra de entidades GLiNER2.5 (`gliner_entities_sample`) para ayudar a calcular actores, roles, framing, claims y evidencia.
 
 ## Importante
 

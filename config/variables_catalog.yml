@@ -39,7 +39,7 @@ variables:
     level: level_1
     unit: document
     method_type: llm_prompt
-    tools: [openai_or_gemini_json_prompt]
+    tools: [deepseek_json_prompt, openai_fallback_json_prompt]
     inputs: [title, text, keyword_family, source, language]
     outputs: [is_relevant, relevance_score, rationale_short]
     validation: human_gold_sample
@@ -48,7 +48,7 @@ variables:
     level: level_1
     unit: document
     method_type: llm_or_hf
-    tools: [json_prompt, multilingual_sentiment_model]
+    tools: [deepseek_json_prompt, multilingual_sentiment_model]
     allowed_values: [positive, neutral, negative, mixed, unclear]
     validation: stratified_human_review_by_language
 
@@ -56,7 +56,7 @@ variables:
     level: level_2
     unit: document
     method_type: llm_prompt
-    tools: [json_prompt]
+    tools: [deepseek_json_prompt]
     allowed_values: [concern, fear, anger, sadness, hope, trust, pride, none, unclear]
     notes: "Taxonomia corta; no convertir en psicometria."
     validation: human_review
@@ -65,7 +65,7 @@ variables:
     level: level_1
     unit: document
     method_type: hybrid_clustering_llm
-    tools: [sentence_transformers, sklearn, json_prompt]
+    tools: [sentence_transformers, sklearn, deepseek_json_prompt]
     outputs: [narrative_label, narrative_summary, evidence_span]
     validation: cluster_review_and_human_sample
 
@@ -73,23 +73,80 @@ variables:
     level: level_1
     unit: document
     method_type: llm_prompt
-    tools: [json_prompt]
-    outputs: [frame_label, problem_definition, cause, consequence, solution, evidence_span]
+    tools: [deepseek_json_prompt]
+    outputs:
+      - frame_label
+      - frame_family
+      - frame_function
+      - frame_scale
+      - problem_definition
+      - cause
+      - consequence
+      - solution
+      - moral_evaluation
+      - beneficiary_actor
+      - affected_actor
+      - evidence_span
     validation: human_coding_sample
+
+  - name: framing_analysis
+    level: level_1
+    unit: document
+    method_type: deepseek_llm_prompt
+    tools: [deepseek_json_prompt]
+    allowed_values:
+      frame_family:
+        - ecological_crisis
+        - conservation_solution
+        - policy_governance
+        - justice_rights
+        - economic_development
+        - science_evidence
+        - conflict_tradeoff
+        - animal_welfare
+        - indigenous_local_knowledge
+        - risk_security
+        - public_participation
+        - unclear
+      frame_function: [diagnostic, prognostic, motivational, moral_evaluation, mixed, unclear]
+      frame_scale: [local, national, regional, global, mixed, unclear]
+    outputs:
+      - diagnostic_frame
+      - causal_attribution
+      - prognostic_frame
+      - motivational_frame
+      - risk_frame
+      - opportunity_frame
+      - knowledge_authority_frame
+      - participation_frame
+      - economic_frame
+      - justice_rights_frame
+      - evidence_span
+    prompt: "Con DeepSeek, analice el framing completo: como se define el problema, a quien o que se atribuye la causa, que solucion se propone, que llamado a la accion aparece, que riesgo u oportunidad se enfatiza, que autoridad de conocimiento se privilegia y si hay encuadre economico, de participacion o de justicia."
+    validation: human_coding_sample
+
+  - name: counter_frame_candidate
+    level: level_2
+    unit: document
+    method_type: deepseek_llm_prompt
+    tools: [deepseek_json_prompt]
+    outputs: [is_present, frame_label, contrasts_with, evidence_span]
+    prompt: "Detecte si el texto presenta un counter-frame o encuadre alternativo que contraste con el frame dominante."
+    validation: domain_partner_review
 
   - name: marginalised_frame_candidate
     level: level_2
     unit: document_or_cluster
     method_type: llm_prompt_plus_distributional_analysis
-    tools: [json_prompt, pandas]
-    outputs: [is_candidate, frame_label, underrepresentation_reason]
+    tools: [deepseek_json_prompt, pandas]
+    outputs: [is_candidate, frame_label, reason, evidence_span, underrepresentation_reason]
     validation: domain_partner_review
 
   - name: actor_roles
     level: level_1
     unit: document
     method_type: hf_plus_llm
-    tools: [gliner_ner_hf, json_prompt]
+    tools: [gliner_ner_hf, deepseek_json_prompt]
     outputs: [actor_mentions, responsibility_actor, agency_actor, blame_actor, proposed_action]
     prompt: "Identifique actores mencionados y clasifique su rol discursivo solo cuando haya evidencia textual: responsabilidad, agencia, culpa, afectado, experto u otro."
     validation: human_review
@@ -116,7 +173,7 @@ variables:
     level: level_1
     unit: document
     method_type: llm_prompt_plus_gliner
-    tools: [gliner_ner_hf, json_prompt]
+    tools: [gliner_ner_hf, deepseek_json_prompt]
     outputs: [government_present, community_present, ngo_present, private_sector_present, science_present, media_present]
     prompt: "A partir de entidades y texto, indique si aparecen gobierno, comunidades locales o indigenas, ONG/sociedad civil, sector privado, ciencia/academia y medios. Devuelva booleanos y evidencia corta."
     validation: human_review
@@ -125,7 +182,7 @@ variables:
     level: level_1
     unit: document
     method_type: gliner_plus_llm_prompt
-    tools: [gliner_ner_hf, json_prompt]
+    tools: [gliner_ner_hf, deepseek_json_prompt]
     outputs: [species_mentions, ecosystem_mentions, protected_area_mentions, biodiversity_concepts]
     prompt: "Extraiga el objeto biodiverso central: especies, ecosistemas, areas protegidas o conceptos de biodiversidad mencionados. Si no hay evidencia, devuelva listas vacias."
     validation: domain_spot_check
@@ -134,7 +191,7 @@ variables:
     level: level_2
     unit: document
     method_type: gliner_plus_llm_prompt
-    tools: [gliner_ner_hf, json_prompt]
+    tools: [gliner_ner_hf, deepseek_json_prompt]
     outputs: [policy_mentions, institution_mentions, regulation_or_commitment, implementation_gap]
     prompt: "Identifique politicas, leyes, instituciones o compromisos publicos mencionados y si el texto senala brechas de implementacion."
     validation: human_review
@@ -143,7 +200,7 @@ variables:
     level: level_2
     unit: document_or_claim
     method_type: llm_prompt
-    tools: [json_prompt]
+    tools: [deepseek_json_prompt]
     allowed_values: [data_or_statistics, expert_source, official_document, eyewitness_or_testimony, anecdotal, no_evidence, unclear]
     prompt: "Clasifique el tipo de evidencia usada para sostener la afirmacion principal. No juzgue si la afirmacion es verdadera o falsa."
     validation: human_claim_sample
@@ -152,7 +209,7 @@ variables:
     level: level_2
     unit: document
     method_type: llm_prompt
-    tools: [json_prompt]
+    tools: [deepseek_json_prompt]
     allowed_values: [problem_only, proposes_solution, evaluates_solution, calls_for_action, unclear]
     prompt: "Determine si el texto solo describe un problema, propone una solucion, evalua una solucion o hace un llamado a la accion."
     validation: human_review
@@ -161,7 +218,7 @@ variables:
     level: level_2
     unit: document
     method_type: llm_prompt
-    tools: [json_prompt]
+    tools: [deepseek_json_prompt]
     outputs: [is_present, affected_group, equity_dimension, evidence_span]
     prompt: "Detecte menciones explicitas a justicia, equidad, derechos, participacion, comunidades afectadas o distribucion desigual de costos/beneficios."
     validation: domain_partner_review
@@ -170,7 +227,7 @@ variables:
     level: level_2
     unit: document
     method_type: llm_prompt
-    tools: [json_prompt]
+    tools: [deepseek_json_prompt]
     allowed_values: [high_uncertainty, moderate_uncertainty, low_uncertainty, no_uncertainty_signal, unclear]
     prompt: "Clasifique si el texto expresa incertidumbre, falta de evidencia, controversia tecnica o necesidad de mas datos."
     validation: human_review
@@ -179,7 +236,7 @@ variables:
     level: level_2
     unit: document
     method_type: llm_prompt
-    tools: [json_prompt]
+    tools: [deepseek_json_prompt]
     outputs: [is_conflict_present, conflict_axis, actors_in_conflict, evidence_span]
     prompt: "Identifique si el texto presenta conflicto entre actores, valores o intereses, por ejemplo conservacion vs economia, comunidad vs gobierno, bienestar animal vs ecosistema."
     validation: human_review
@@ -188,7 +245,7 @@ variables:
     level: level_2
     unit: claim
     method_type: llm_prompt
-    tools: [json_prompt]
+    tools: [deepseek_json_prompt]
     allowed_values:
       claim_type: [factual_claim, opinion, interpretation, value_judgment, prediction, testimony, mixed_claim]
       verifiability: [directly_verifiable, verifiable_with_external_evidence, difficult_to_verify, not_factually_verifiable, insufficient_context]

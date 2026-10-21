@@ -41,6 +41,81 @@ La unidad final de analisis no es "una variable = una herramienta". El resultado
 
 Estas variables compuestas son las que deben aparecer en reportes y tableros. Las salidas individuales (`gliner_named_entities`, `dominant_frame`, `engagement_total`, etc.) son **componentes intermedios trazables** para construirlas, auditarlas y validarlas.
 
+## Variables Calculadas Por DeepSeek / LLM
+
+DeepSeek es el proveedor LLM principal del pipeline. OpenAI queda solo como fallback cuando DeepSeek no responda o falte token.
+
+```yaml
+llm_provider_order:
+  - deepseek
+  - openai
+deepseek_model: deepseek-chat
+response_format: json_object
+```
+
+### Bloque principal de framing
+
+Estas variables se calculan con DeepSeek porque requieren interpretar el encuadre del texto, no solo extraer entidades:
+
+| Variable DeepSeek | Salida | Uso en perfil compuesto |
+|---|---|---|
+| `dominant_frame.frame_label` | etiqueta corta del frame dominante | `narrative_frame_profile` |
+| `dominant_frame.frame_family` | familia de frame: crisis ecologica, gobernanza, justicia, economia, ciencia, conflicto, etc. | comparaciones por pais/fuente |
+| `dominant_frame.frame_function` | diagnostic, prognostic, motivational, moral_evaluation, mixed | estructura del framing |
+| `dominant_frame.frame_scale` | local, nacional, regional, global, mixto | escala discursiva |
+| `dominant_frame.problem_definition` | como define el problema | diagnostico del frame |
+| `dominant_frame.cause` | causa atribuida | responsabilidad/causalidad |
+| `dominant_frame.consequence` | consecuencia destacada | riesgo/impacto |
+| `dominant_frame.solution` | solucion propuesta | accion/prognosis |
+| `dominant_frame.moral_evaluation` | juicio moral o valorativo | dimension normativa |
+| `dominant_frame.beneficiary_actor` | quien se beneficia | justicia/equidad |
+| `dominant_frame.affected_actor` | quien es afectado | justicia/equidad |
+| `dominant_frame.evidence_span` | fragmento textual de soporte | auditoria humana |
+| `framing_analysis.diagnostic_frame` | definicion ampliada del problema | framing diagnostico |
+| `framing_analysis.causal_attribution` | actor/proceso causante | responsabilidad/blame |
+| `framing_analysis.prognostic_frame` | solucion/intervencion propuesta | orientacion a solucion |
+| `framing_analysis.motivational_frame` | llamado a la accion o urgencia | movilizacion |
+| `framing_analysis.risk_frame` | riesgo/amenaza enfatizada | riesgo |
+| `framing_analysis.opportunity_frame` | beneficio u oportunidad enfatizada | oportunidad |
+| `framing_analysis.knowledge_authority_frame` | que conocimiento se privilegia | ciencia, saber local, autoridad institucional |
+| `framing_analysis.participation_frame` | inclusion/exclusion/participacion | justicia y gobernanza |
+| `framing_analysis.economic_frame` | costo, financiacion, medios de vida, desarrollo | economia y desarrollo |
+| `framing_analysis.justice_rights_frame` | derechos, equidad, comunidades afectadas | justicia/equidad |
+| `counter_frame_candidate` | encuadre alternativo o contra-frame | diversidad discursiva |
+| `marginalised_frame_candidate` | frame potencialmente subrepresentado | frames marginalizados |
+| `conflict_polarization_signal` | conflicto, eje y actores | conflicto/polarizacion |
+
+### Resto de variables interpretativas calculadas con DeepSeek
+
+| Variable DeepSeek | Uso |
+|---|---|
+| `is_relevant_biodiversity` | confirmar relevancia semantica |
+| `relevance_score` | score de relevancia 0..1 |
+| `primary_topic` | tema principal |
+| `subtopic` | subtema |
+| `sentiment_label` | sentimiento contextual |
+| `emotion_labels` | emociones expresadas |
+| `emotional_intensity` | intensidad emocional |
+| `narrative_label` | narrativa candidata |
+| `narrative_summary` | resumen narrativo |
+| `discursive_pattern` | patron discursivo |
+| `actors` | actores y roles discursivos |
+| `responsibility_actor` | actor asociado a responsabilidad |
+| `agency_actor` | actor con capacidad de accion |
+| `blame_actor` | actor culpabilizado |
+| `proposed_action` | accion propuesta |
+| `stakeholder_presence` | presencia contextual de stakeholders |
+| `biodiversity_object` | objeto biodiverso depurado |
+| `governance_policy_mentions` | politicas, instituciones y brechas |
+| `claim_typology` | tipo de afirmacion, verificabilidad y evidencia |
+| `solution_orientation` | si describe problema, propone/evalua solucion o llama a actuar |
+| `justice_equity_signal` | justicia, equidad, derechos, participacion |
+| `uncertainty_signal` | incertidumbre, falta de evidencia o necesidad de datos |
+| `confidence` | confianza operacional del modelo |
+| `quality_flags` | banderas de calidad del documento o salida |
+
+DeepSeek recibe como insumo el texto, metadatos, keywords y una muestra de entidades de GLiNER2.5. Por eso las variables finales son mixtas: GLiNER2.5 ayuda a ubicar actores/objetos; DeepSeek interpreta el frame, roles y relaciones.
+
 ## 2. Prueba obligatoria antes de escalar
 
 Cada cambio relevante del pipeline debe probarse con:
